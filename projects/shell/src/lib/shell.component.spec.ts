@@ -1,13 +1,7 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatButtonModule,
-  MatIconModule,
-  MatListModule,
-  MatSidenavModule,
-  MatToolbarModule,
-} from '@angular/material';
+import { MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
 
 import { ShellComponent } from './shell.component';
 
@@ -18,15 +12,7 @@ describe('ShellComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ShellComponent],
-      imports: [
-        NoopAnimationsModule,
-        LayoutModule,
-        MatButtonModule,
-        MatIconModule,
-        MatListModule,
-        MatSidenavModule,
-        MatToolbarModule,
-      ]
+      imports: [NoopAnimationsModule, LayoutModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule]
     }).compileComponents();
   }));
 

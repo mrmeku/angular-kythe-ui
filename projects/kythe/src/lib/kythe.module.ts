@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
-import { KytheService } from "./kythe.service";
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { KytheService } from './kythe.service';
 
 @NgModule({
   providers: [KytheService],
