@@ -58,7 +58,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-kythe-ui:build"
+            "browserTarget": "angular-kythe-ui:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -159,6 +160,41 @@
             "tsConfig": [
               "projects/shell/tsconfig.lib.json",
               "projects/shell/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "kythe": {
+      "root": "projects/kythe",
+      "sourceRoot": "projects/kythe/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/kythe/tsconfig.lib.json",
+            "project": "projects/kythe/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/kythe/src/test.ts",
+            "tsConfig": "projects/kythe/tsconfig.spec.json",
+            "karmaConfig": "projects/kythe/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/kythe/tsconfig.lib.json",
+              "projects/kythe/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

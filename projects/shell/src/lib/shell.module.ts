@@ -8,10 +8,12 @@ import {
   MatIconModule
 } from "@angular/material";
 import { CommonModule } from "@angular/common";
+import { KytheModule } from "projects/kythe/src/public_api";
 
 @NgModule({
   declarations: [ShellComponent],
   imports: [
+    KytheModule,
     CommonModule,
     MatIconModule,
     MatSidenavModule,

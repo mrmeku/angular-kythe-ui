@@ -1,0 +1,11 @@
+{
+    "/api": {
+      "target": "http://192.168.86.45:8888",
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "secure": false
+    }
+  }
