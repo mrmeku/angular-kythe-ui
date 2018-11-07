@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "kythe": [
+        "dist/kythe"
+      ],
+      "kythe/*": [
+        "dist/kythe/*"
+      ]
+    }
   }
 }
