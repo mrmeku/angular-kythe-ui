@@ -1,6 +1,6 @@
 import {
   KytheDecoration,
-} from 'projects/kythe/src/public_api';
+} from '../lib/declarations';
 
 export const response: KytheDecoration = {
   "location" : {
