@@ -66,7 +66,8 @@ var router_1 = __webpack_require__(/*! @angular/router */ "../../node_modules/@a
 var operators_1 = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
 var SELECTOR = '.code-mirror-container';
 var CodeMirrorComponent = /** @class */ (function () {
-    function CodeMirrorComponent(elementRef, activeRoute, kytheService) {
+    function CodeMirrorComponent(elementRef, activeRoute, kytheService // @Inject(CODE_MIRROR_FACTORY)
+    ) {
         this.elementRef = elementRef;
         this.activeRoute = activeRoute;
         this.kytheService = kytheService;
@@ -110,7 +111,8 @@ var CodeMirrorComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [core_1.ElementRef,
             router_1.ActivatedRoute,
-            kythe_1.KytheService])
+            kythe_1.KytheService // @Inject(CODE_MIRROR_FACTORY)
+        ])
     ], CodeMirrorComponent);
     return CodeMirrorComponent;
 }());
@@ -574,8 +576,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 var http_1 = __webpack_require__(/*! @angular/common/http */ "../../node_modules/@angular/common/fesm5/http.js");
+var core_1 = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 var operators_1 = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
 var KytheTarget = /** @class */ (function () {
     function KytheTarget(kytheUri) {
@@ -618,41 +620,36 @@ var GetDecorationsRequest = /** @class */ (function () {
         this.target_definitions = target_definitions;
     }
     GetDecorationsRequest.fromTicket = function (target) {
-        return new GetDecorationsRequest({
-            ticket: target
-        }, true, true, true);
+        return new GetDecorationsRequest({ ticket: target }, true, true, true);
     };
     return GetDecorationsRequest;
 }());
 exports.GetDecorationsRequest = GetDecorationsRequest;
+var baseUrl = 'https://cors-anywhere.herokuapp.com/xrefs-dot-kythe-repo.appspot.com';
 var KytheService = /** @class */ (function () {
     function KytheService(http) {
         this.http = http;
     }
     KytheService.prototype.corpusRoots = function () {
         return this.http
-            .get('/api/corpusRoots')
+            .get(baseUrl + '/corpusRoots')
             .pipe(operators_1.map(function (response) { return response.corpus.map(KytheTarget.fromCorpusRoot); }));
     };
     KytheService.prototype.dir = function (dirRequest) {
         return this.http
-            .post('/api/dir', dirRequest)
+            .post(baseUrl + '/dir', dirRequest)
             .pipe(operators_1.map(function (response) { return response.subdirectory.map(function (uri) { return new KytheTarget(uri); }); }));
     };
     KytheService.prototype.getDecorations = function (getDecorationsRequest) {
-        return this.http.post('/api/decorations', {
-            location: {
-                ticket: getDecorationsRequest.location.ticket.toString()
-            },
+        return this.http.post(baseUrl + '/decorations', {
+            location: { ticket: getDecorationsRequest.location.ticket.toString() },
             references: true,
             source_text: true,
             target_definitions: true
         });
     };
     KytheService = __decorate([
-        core_1.Injectable({
-            providedIn: 'root'
-        }),
+        core_1.Injectable({ providedIn: 'root' }),
         __metadata("design:paramtypes", [http_1.HttpClient])
     ], KytheService);
     return KytheService;
