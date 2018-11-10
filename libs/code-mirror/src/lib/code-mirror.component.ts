@@ -37,9 +37,8 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
   constructor(
     private readonly elementRef: ElementRef,
     private readonly activeRoute: ActivatedRoute,
-    private readonly kytheService: KytheService
-  ) // @Inject(CODE_MIRROR_FACTORY)
-  // private readonly codeMirrorFactory: CodeMirrorFactory
+    private readonly kytheService: KytheService // @Inject(CODE_MIRROR_FACTORY)
+  ) // private readonly codeMirrorFactory: CodeMirrorFactory
   {}
 
   ngAfterViewInit() {
