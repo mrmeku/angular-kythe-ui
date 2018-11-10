@@ -14,15 +14,7 @@ export class ShellComponent implements OnInit {
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
 
-  rootDirs$ = this.kytheService.corpusRoots().pipe(
-    switchMap(res =>
-      this.kytheService.dir({
-        corpus: res[0].name,
-        path: res[0].root[0],
-        root: null
-      })
-    )
-  );
+  rootDirs$ = this.kytheService.corpusRoots();
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
