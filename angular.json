@@ -1,30 +1,108 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "",
   "projects": {
-    "angular-kythe-ui": {
-      "root": "",
-      "sourceRoot": "src",
+    "kythe": {
+      "root": "libs/kythe",
+      "sourceRoot": "libs/kythe/src",
+      "projectType": "library",
+      "prefix": "angular-libs/kythe-ui",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/kythe/tsconfig.lib.json",
+              "libs/kythe/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/kythe/jest.config.js",
+            "tsConfig": "libs/kythe/tsconfig.spec.json",
+            "setupFile": "libs/kythe/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "shell": {
+      "root": "libs/shell",
+      "sourceRoot": "libs/shell/src",
+      "projectType": "library",
+      "prefix": "angular-kythe-ui",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shell/tsconfig.lib.json",
+              "libs/shell/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/shell/jest.config.js",
+            "tsConfig": "libs/shell/tsconfig.spec.json",
+            "setupFile": "libs/shell/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "kythe-ui": {
+      "root": "apps/kythe-ui/",
+      "sourceRoot": "apps/kythe-ui/src",
       "projectType": "application",
-      "prefix": "app",
-      "schematics": {},
+      "prefix": "angular-apps/kythe-ui",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss",
+          "spec": false
+        },
+        "@schematics/angular:class": {
+          "spec": false
+        },
+        "@schematics/angular:directive": {
+          "spec": false
+        },
+        "@schematics/angular:guard": {
+          "spec": false
+        },
+        "@schematics/angular:module": {
+          "spec": false
+        },
+        "@schematics/angular:pipe": {
+          "spec": false
+        },
+        "@schematics/angular:service": {
+          "spec": false
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-kythe-ui",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "outputPath": "dist/apps/kythe-ui",
+            "index": "apps/kythe-ui/src/index.html",
+            "main": "apps/kythe-ui/src/main.ts",
+            "polyfills": "apps/kythe-ui/src/polyfills.ts",
+            "tsConfig": "apps/kythe-ui/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/kythe-ui/src/favicon.ico",
+              "apps/kythe-ui/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss"
+              "apps/kythe-ui/src/styles.scss"
             ],
             "scripts": []
           },
@@ -32,8 +110,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/kythe-ui/src/environments/environment.ts",
+                  "with": "apps/kythe-ui/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -58,45 +136,26 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-kythe-ui:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "kythe-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-kythe-ui:build:production"
+              "browserTarget": "kythe-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-kythe-ui:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.css"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "browserTarget": "kythe-ui:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "apps/kythe-ui/tsconfig.app.json",
+              "apps/kythe-ui/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -105,20 +164,21 @@
         }
       }
     },
-    "angular-kythe-ui-e2e": {
-      "root": "e2e/",
+    "kythe-ui-e2e": {
+      "root": "apps/kythe-ui-e2e",
       "projectType": "application",
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@nrwl/builders:cypress",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-kythe-ui:serve"
+            "cypressConfig": "apps/kythe-ui-e2e/cypress.json",
+            "tsConfig": "apps/kythe-ui-e2e/tsconfig.e2e.json",
+            "devServerTarget": "kythe-ui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-kythe-ui:serve:production"
+              "devServerTarget": "kythe-ui:serve:production"
             }
           }
         },
@@ -132,89 +192,19 @@
           }
         }
       }
-    },
-    "shell": {
-      "root": "projects/shell",
-      "sourceRoot": "projects/shell/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/shell/tsconfig.lib.json",
-            "project": "projects/shell/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/shell/src/test.ts",
-            "tsConfig": "projects/shell/tsconfig.spec.json",
-            "karmaConfig": "projects/shell/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/shell/tsconfig.lib.json",
-              "projects/shell/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "kythe": {
-      "root": "projects/kythe",
-      "sourceRoot": "projects/kythe/src",
-      "projectType": "library",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/kythe/tsconfig.lib.json",
-            "project": "projects/kythe/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/kythe/src/test.ts",
-            "tsConfig": "projects/kythe/tsconfig.spec.json",
-            "karmaConfig": "projects/kythe/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/kythe/tsconfig.lib.json",
-              "projects/kythe/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
   },
   "cli": {
-    "warnings": {
-      "typescriptMismatch": false,
-      "versionMismatch": false
-    },
+    "defaultCollection": "@nrwl/schematics",
     "packageManager": "yarn"
   },
   "schematics": {
-    "@schematics/angular:component": {
+    "@nrwl/schematics:component": {
       "styleext": "scss"
+    },
+    "@nrwl/schematics:library": {
+      "unitTestRunner": "jest"
     }
   },
-  "defaultProject": "angular-kythe-ui"
+  "defaultProject": "kythe"
 }
