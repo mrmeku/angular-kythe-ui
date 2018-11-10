@@ -1,4 +1,6 @@
-import {KytheDecoration} from "./main";
+import {
+  KytheDecoration,
+} from 'projects/kythe/src/public_api';
 
 export const response: KytheDecoration = {
   "location" : {
