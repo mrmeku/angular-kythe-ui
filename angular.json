@@ -221,6 +221,34 @@
           }
         }
       }
+    },
+    "file-tree": {
+      "root": "libs/file-tree",
+      "sourceRoot": "libs/file-tree/src",
+      "projectType": "library",
+      "prefix": "angular-kythe-ui",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/file-tree/tsconfig.lib.json",
+              "libs/file-tree/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/file-tree/jest.config.js",
+            "tsConfig": "libs/file-tree/tsconfig.spec.json",
+            "setupFile": "libs/file-tree/src/test-setup.ts"
+          }
+        }
+      }
     }
   },
   "cli": {
