@@ -15,3 +15,7 @@
   top: 0;
   z-index: 1;
 }
+
+angular-kythe-ui-code-mirror {
+  height: calc(100vh - 64px);
+}

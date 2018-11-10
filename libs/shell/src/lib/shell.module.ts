@@ -9,11 +9,13 @@ import {
 } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { KytheModule } from '@angular-kythe-ui/kythe';
+import { CodeMirrorModule } from '@angular-kythe-ui/code-mirror';
 
 @NgModule({
   declarations: [ShellComponent],
   imports: [
     KytheModule,
+    CodeMirrorModule,
     CommonModule,
     MatIconModule,
     MatSidenavModule,

@@ -136,7 +136,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "kythe-ui:build"
+            "browserTarget": "kythe-ui:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -189,6 +190,34 @@
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        }
+      }
+    },
+    "code-mirror": {
+      "root": "libs/code-mirror",
+      "sourceRoot": "libs/code-mirror/src",
+      "projectType": "library",
+      "prefix": "angular-kythe-ui",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/code-mirror/tsconfig.lib.json",
+              "libs/code-mirror/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/code-mirror/jest.config.js",
+            "tsConfig": "libs/code-mirror/tsconfig.spec.json",
+            "setupFile": "libs/code-mirror/src/test-setup.ts"
           }
         }
       }

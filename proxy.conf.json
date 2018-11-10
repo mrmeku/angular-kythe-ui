@@ -1,0 +1,11 @@
+{
+    "/api": {
+      "target": "https://xrefs-dot-kythe-repo.appspot.com/",
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "secure": true
+    }
+}
