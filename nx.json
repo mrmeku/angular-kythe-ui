@@ -19,6 +19,9 @@
     },
     "kythe-ui-e2e": {
       "tags": []
+    },
+    "code-mirror": {
+      "tags": []
     }
   }
 }
