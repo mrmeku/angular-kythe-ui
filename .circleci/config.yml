@@ -2,6 +2,9 @@ version: 2
 jobs:
   build:
     working_directory: ~/angular-cli-circleci
+    environment:
+      - SOURCE_BRANCH: master
+      - TARGET_BRANCH: gh-pages
     docker:
       - image: circleci/node:8.12.0-stretch-browsers
     steps:
@@ -25,3 +28,32 @@ jobs:
       - run:
           name: test
           command: yarn affected:test --base=master --parallel
+      - deploy:
+          name: Deploy
+          # Deploy script from:
+          # https://blog.frederikring.com/articles/deploying-github-pages-circle-ci/
+          command: |
+            if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
+              git config --global user.email "circleci@circleci.com"
+              git config --global user.name "Circle CI Automated committer"
+
+              git clone $CIRCLE_REPOSITORY_URL out
+
+              cd out
+              git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+              git rm -rf .
+              cd ..
+
+              yarn install
+              yarn run build
+
+              cp -a dist/apps/kythe-ui/. out/.
+
+              mkdir -p out/.circleci && cp -a .circleci/. out/.circleci/.
+              cd out
+
+              git add -A
+              git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+
+              git push origin $TARGET_BRANCH
+            fi
