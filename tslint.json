@@ -1,36 +1,21 @@
 {
   "rulesDirectory": [
-    "node_modules/codelyzer"
+    "node_modules/codelyzer",
+    "node_modules/@nrwl/schematics/src/tslint"
   ],
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
-    "curly": true,
     "deprecation": {
       "severity": "warn"
     },
-    "eofline": true,
     "forin": true,
     "import-blacklist": [
       true,
       "rxjs/Rx"
     ],
-    "import-spacing": true,
-    "indent": [
-      true,
-      "spaces"
-    ],
     "interface-over-type-literal": true,
-    "label-position": true,
-    "max-line-length": [
-      true,
-      140
-    ],
     "member-access": false,
     "member-ordering": [
       true,
@@ -65,57 +50,34 @@
     ],
     "no-misused-new": true,
     "no-non-null-assertion": true,
-    "no-redundant-jsdoc": true,
     "no-shadowed-variable": true,
     "no-string-literal": false,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
-    "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
-    "one-line": [
-      true,
-      "check-open-brace",
-      "check-catch",
-      "check-else",
-      "check-whitespace"
-    ],
     "prefer-const": true,
-    "quotemark": [
-      true,
-      "single"
-    ],
     "radix": true,
-    "semicolon": [
-      true,
-      "always"
-    ],
     "triple-equals": [
       true,
       "allow-null-check"
     ],
-    "typedef-whitespace": [
-      true,
-      {
-        "call-signature": "nospace",
-        "index-signature": "nospace",
-        "parameter": "nospace",
-        "property-declaration": "nospace",
-        "variable-declaration": "nospace"
-      }
-    ],
     "unified-signatures": true,
     "variable-name": false,
-    "whitespace": [
+    "directive-selector": [
       true,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-separator",
-      "check-type"
+      "attribute",
+      "app",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "app",
+      "kebab-case"
     ],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
@@ -127,19 +89,15 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "no-any": true,
-    "array-type": [true, "array"],
-    "no-boolean-literal-compare": true,
-    "no-irregular-whitespace": true,
-    "no-consecutive-blank-lines": [true, 2],
-    "prefer-method-signature": true,
-    "ordered-imports": false,
-    "object-literal-shorthand": true,
-    "no-angle-bracket-type-assertion": true,
-    "arrow-parens": [true, "ban-single-arg-parens"],
-    "object-literal-key-quotes": [true, "as-needed"],
-    "no-unnecessary-qualifier": true,
-    "no-duplicate-imports": true,
-    "prefer-readonly": true
+
+    "nx-enforce-module-boundaries": [
+      true,
+      {
+        "allow": [],
+        "depConstraints": [
+          { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
+        ]
+      }
+    ]
   }
 }

@@ -1,0 +1,24 @@
+{
+  "npmScope": "angular-kythe-ui",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "kythe": {
+      "tags": []
+    },
+    "shell": {
+      "tags": []
+    },
+    "kythe-ui": {
+      "tags": []
+    },
+    "kythe-ui-e2e": {
+      "tags": []
+    }
+  }
+}
