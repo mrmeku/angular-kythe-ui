@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/angular-cli-circleci
     docker:
-      - image: circleci/node:8.11.3-stretch-browsers
+      - image: circleci/node:8.12.0-stretch-browsers
     steps:
       - checkout
       - restore_cache:
