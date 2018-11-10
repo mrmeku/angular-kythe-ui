@@ -3,6 +3,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ShellComponent } from './shell.component';
 import { ShellModule } from './shell.module';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ShellComponent', () => {
   let component: ShellComponent;
@@ -10,7 +11,7 @@ describe('ShellComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, ShellModule]
+      imports: [RouterTestingModule, NoopAnimationsModule, ShellModule]
     }).compileComponents();
   }));
 

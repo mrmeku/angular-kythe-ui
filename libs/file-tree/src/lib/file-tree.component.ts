@@ -4,7 +4,7 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { KytheService } from '@angular-kythe-ui/kythe';
 
 @Component({
-  selector: 'lib-file-tree',
+  selector: 'angular-kythe-ui-file-tree',
   templateUrl: 'file-tree.component.html',
   styleUrls: ['file-tree.component.scss']
 })

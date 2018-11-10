@@ -9,12 +9,19 @@ import {
 } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { KytheModule } from '@angular-kythe-ui/kythe';
-import { CodeMirrorModule } from '@angular-kythe-ui/code-mirror';
+import {
+  CodeMirrorModule,
+  codeMirrorRoutes
+} from '@angular-kythe-ui/code-mirror';
 import { FileTreeModule } from '@angular-kythe-ui/file-tree';
+import { RouterModule } from '@angular/router';
+
+const routes = RouterModule.forChild(codeMirrorRoutes);
 
 @NgModule({
   declarations: [ShellComponent],
   imports: [
+    routes,
     FileTreeModule,
     KytheModule,
     CodeMirrorModule,

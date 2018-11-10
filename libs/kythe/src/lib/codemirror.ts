@@ -23,7 +23,7 @@ export function decorate(
       // These things we don't do either!
       return;
     }
-    if (reference.span.start.line_number != reference.span.end.line_number) {
+    if (reference.span.start.line_number !== reference.span.end.line_number) {
       // TODO: Figure out what circumstances hilighting spans multiple lines and
       // handle them better than ignoring.
       console.log(reference.target_ticket);

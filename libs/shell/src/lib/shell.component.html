@@ -4,7 +4,7 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
-    <lib-file-tree></lib-file-tree>
+    <angular-kythe-ui-file-tree></angular-kythe-ui-file-tree>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
@@ -18,7 +18,7 @@
       </button>
       <span>shell</span>
     </mat-toolbar>
-    <angular-kythe-ui-code-mirror></angular-kythe-ui-code-mirror>
+    <router-outlet></router-outlet>
     <!-- Add Content Here -->
   </mat-sidenav-content>
 </mat-sidenav-container>
