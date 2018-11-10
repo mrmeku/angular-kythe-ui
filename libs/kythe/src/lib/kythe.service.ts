@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { KytheDecoration } from './declarations';
 
 export interface CorpusRoot {
@@ -63,55 +64,45 @@ export class KytheTarget {
 
 export class GetDecorationsRequest {
   constructor(
-    readonly location: {
-      ticket: KytheTarget;
-    },
+    readonly location: { ticket: KytheTarget },
     readonly references: boolean,
     readonly source_text: boolean,
     readonly target_definitions: boolean
   ) {}
 
   static fromTicket(target: KytheTarget): GetDecorationsRequest {
-    return new GetDecorationsRequest(
-      {
-        ticket: target
-      },
-      true,
-      true,
-      true
-    );
+    return new GetDecorationsRequest({ ticket: target }, true, true, true);
   }
 }
 
 export type KytheUri = string;
 
+const baseUrl =
+  'https://cors-anywhere.herokuapp.com/xrefs-dot-kythe-repo.appspot.com';
+
 export interface DirResponse {
   subdirectory: KytheUri[];
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class KytheService {
   corpusRoots(): Observable<KytheTarget[]> {
     return this.http
-      .get<CorpusRootResponse>('/api/corpusRoots')
+      .get<CorpusRootResponse>(baseUrl + '/corpusRoots')
       .pipe(map(response => response.corpus.map(KytheTarget.fromCorpusRoot)));
   }
 
   dir(dirRequest: DirRequest): Observable<KytheTarget[]> {
     return this.http
-      .post<DirResponse>('/api/dir', dirRequest)
+      .post<DirResponse>(baseUrl + '/dir', dirRequest)
       .pipe(
         map(response => response.subdirectory.map(uri => new KytheTarget(uri)))
       );
   }
 
   getDecorations(getDecorationsRequest: GetDecorationsRequest) {
-    return this.http.post<KytheDecoration>('/api/decorations', {
-      location: {
-        ticket: getDecorationsRequest.location.ticket.toString()
-      },
+    return this.http.post<KytheDecoration>(baseUrl + '/decorations', {
+      location: { ticket: getDecorationsRequest.location.ticket.toString() },
       references: true,
       source_text: true,
       target_definitions: true
