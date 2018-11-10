@@ -16,6 +16,8 @@ export function decorate(codeMirror: CodeMirror.Editor,
                          kytheDecoration: KytheDecoration) {
 
   const value = atob(kytheDecoration.source_text);
+  codeMirror.setValue(value);
+
   kytheDecoration.reference.forEach((reference: KytheReference) => {
     if (!reference.span.start.column_offset ||
         !reference.span.end.column_offset) {

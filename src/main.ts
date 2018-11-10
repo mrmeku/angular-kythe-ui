@@ -12,9 +12,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-const value = atob(response.source_text);
 var editor = CodeMirror(document.body, {
-  value : value,
   theme : "solarized",
   lineNumbers : true,
   styleSelectedText : true,
