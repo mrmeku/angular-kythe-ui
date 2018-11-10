@@ -3,11 +3,23 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   ElementRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnDestroy,
+  Inject
 } from '@angular/core';
 import * as CodeMirror from 'codemirror';
 
-import { decorate, largeResponse } from '@angular-kythe-ui/kythe';
+import {
+  decorate,
+  largeResponse,
+  KytheTarget,
+  KytheService,
+  GetDecorationsRequest
+} from '@angular-kythe-ui/kythe';
+import { ActivatedRoute } from '@angular/router';
+import { startWith, map, switchMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { CodeMirrorFactory, CODE_MIRROR_FACTORY } from './code-mirror.module';
 
 const SELECTOR = '.code-mirror-container';
 
@@ -18,10 +30,17 @@ const SELECTOR = '.code-mirror-container';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CodeMirrorComponent implements AfterViewInit {
+export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
   private readonly nativeElement = this.elementRef.nativeElement as HTMLElement;
+  private paramsSubscription?: Subscription;
 
-  constructor(private readonly elementRef: ElementRef) {}
+  constructor(
+    private readonly elementRef: ElementRef,
+    private readonly activeRoute: ActivatedRoute,
+    private readonly kytheService: KytheService
+  ) // @Inject(CODE_MIRROR_FACTORY)
+  // private readonly codeMirrorFactory: CodeMirrorFactory
+  {}
 
   ngAfterViewInit() {
     const codeMirrorContainer = this.nativeElement.querySelector<HTMLElement>(
@@ -36,6 +55,28 @@ export class CodeMirrorComponent implements AfterViewInit {
       readOnly: 'nocursor'
     } as any);
 
-    decorate(editor, largeResponse);
+    this.paramsSubscription = this.activeRoute.paramMap
+      .pipe(
+        map(paramMap =>
+          KytheTarget.fromCorpusAndPath({
+            corpus: paramMap.get('corpus'),
+            path: paramMap.get('path')
+          })
+        ),
+        switchMap(kytheTarget =>
+          this.kytheService.getDecorations(
+            GetDecorationsRequest.fromTicket(kytheTarget)
+          )
+        )
+      )
+      .subscribe(kytheDecoration => {
+        decorate(editor, kytheDecoration);
+      });
+  }
+
+  ngOnDestroy() {
+    if (this.paramsSubscription) {
+      this.paramsSubscription.unsubscribe();
+    }
   }
 }

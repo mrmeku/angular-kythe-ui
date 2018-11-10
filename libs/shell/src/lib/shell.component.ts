@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'lib-shell',
+  selector: 'angular-kythe-ui-shell',
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss']
 })

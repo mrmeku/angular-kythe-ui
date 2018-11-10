@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FileTreeComponent } from './file-tree.component';
+import { FileTreeModule } from './file-tree.module';
 
 describe('FileTreeComponent', () => {
   let component: FileTreeComponent;
@@ -8,7 +9,7 @@ describe('FileTreeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FileTreeComponent]
+      imports: [FileTreeModule]
     }).compileComponents();
   }));
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { KytheDecoration } from './declarations';
 
 export interface CorpusRoot {
   name: string;
@@ -16,6 +17,11 @@ export interface DirRequest {
   corpus: string;
   path: string;
   root: null;
+}
+
+interface P {
+  corpus: string;
+  path: string;
 }
 
 export class KytheTarget {
@@ -43,6 +49,38 @@ export class KytheTarget {
     const root = corpusRoot.root[0] ? `?root=${corpusRoot.root[0]}` : '';
     return new KytheTarget(`kythe://${corpusRoot.name}${root}`);
   }
+
+  static fromCorpusAndPath({ corpus, path }: P): KytheTarget {
+    return new KytheTarget(`kythe://${corpus}?path=${path}`);
+  }
+
+  toString() {
+    return `kythe://${this.corpus}?path=${this.corpus}%2f${encodeURIComponent(
+      this.path
+    )}`;
+  }
+}
+
+export class GetDecorationsRequest {
+  constructor(
+    readonly location: {
+      ticket: KytheTarget;
+    },
+    readonly references: boolean,
+    readonly source_text: boolean,
+    readonly target_definitions: boolean
+  ) {}
+
+  static fromTicket(target: KytheTarget): GetDecorationsRequest {
+    return new GetDecorationsRequest(
+      {
+        ticket: target
+      },
+      true,
+      true,
+      true
+    );
+  }
 }
 
 export type KytheUri = string;
@@ -67,6 +105,17 @@ export class KytheService {
       .pipe(
         map(response => response.subdirectory.map(uri => new KytheTarget(uri)))
       );
+  }
+
+  getDecorations(getDecorationsRequest: GetDecorationsRequest) {
+    return this.http.post<KytheDecoration>('/api/decorations', {
+      location: {
+        ticket: getDecorationsRequest.location.ticket.toString()
+      },
+      references: true,
+      source_text: true,
+      target_definitions: true
+    });
   }
 
   constructor(private readonly http: HttpClient) {}
