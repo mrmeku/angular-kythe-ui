@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-import { KytheService } from '@angular-kythe-ui/kythe';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'lib-shell',
@@ -14,12 +13,7 @@ export class ShellComponent implements OnInit {
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
 
-  rootDirs$ = this.kytheService.corpusRoots();
-
-  constructor(
-    private readonly breakpointObserver: BreakpointObserver,
-    private readonly kytheService: KytheService
-  ) {}
+  constructor(private readonly breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {}
 }

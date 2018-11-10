@@ -24,6 +24,9 @@
       ],
       "@angular-kythe-ui/code-mirror": [
         "libs/code-mirror/src/index.ts"
+      ],
+      "@angular-kythe-ui/file-tree": [
+        "libs/file-tree/src/index.ts"
       ]
     }
   },

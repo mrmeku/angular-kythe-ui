@@ -10,10 +10,12 @@ import {
 import { CommonModule } from '@angular/common';
 import { KytheModule } from '@angular-kythe-ui/kythe';
 import { CodeMirrorModule } from '@angular-kythe-ui/code-mirror';
+import { FileTreeModule } from '@angular-kythe-ui/file-tree';
 
 @NgModule({
   declarations: [ShellComponent],
   imports: [
+    FileTreeModule,
     KytheModule,
     CodeMirrorModule,
     CommonModule,

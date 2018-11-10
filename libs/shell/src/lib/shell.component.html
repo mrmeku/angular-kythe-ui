@@ -4,9 +4,7 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a *ngFor="let link of rootDirs$ | async" mat-list-item href="#">{{ link.name }}</a>
-    </mat-nav-list>
+    <lib-file-tree></lib-file-tree>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
