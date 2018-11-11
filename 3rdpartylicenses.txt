@@ -1,6 +1,9 @@
 angular-kythe-ui
 MIT
 
+@angular/common
+MIT
+
 @angular/core
 MIT
 
@@ -270,9 +273,6 @@ Apache-2.0
 
 
 @angular/router
-MIT
-
-@angular/common
 MIT
 
 @angular/platform-browser
