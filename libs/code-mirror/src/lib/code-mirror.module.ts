@@ -13,6 +13,9 @@ import { KytheModule } from '@angular-kythe-ui/kythe';
 import * as CodeMirror from 'codemirror';
 
 export function matcher(segments: UrlSegment[]): UrlMatchResult {
+  if (segments.length <= 1) {
+    return null;
+  }
   return {
     consumed: segments,
     posParams: {
