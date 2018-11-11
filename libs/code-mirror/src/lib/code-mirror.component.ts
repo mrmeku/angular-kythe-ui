@@ -5,7 +5,8 @@ import {
   ElementRef,
   ViewEncapsulation,
   OnDestroy,
-  Inject
+  Inject,
+  NgZone
 } from '@angular/core';
 import * as CodeMirror from 'codemirror';
 
@@ -21,7 +22,7 @@ import { startWith, map, switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { CodeMirrorFactory, CODE_MIRROR_FACTORY } from './code-mirror.module';
 
-const SELECTOR = '.code-mirror-container';
+const CODE_MIRROR_CONTAINER_SELECTOR = '.code-mirror-container';
 
 @Component({
   selector: 'angular-kythe-ui-code-mirror',
@@ -37,40 +38,43 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
   constructor(
     private readonly elementRef: ElementRef,
     private readonly activeRoute: ActivatedRoute,
-    private readonly kytheService: KytheService // @Inject(CODE_MIRROR_FACTORY)
-  ) // private readonly codeMirrorFactory: CodeMirrorFactory
-  {}
+    private readonly kytheService: KytheService,
+    private readonly ngZone: NgZone
+  ) {}
 
   ngAfterViewInit() {
-    const codeMirrorContainer = this.nativeElement.querySelector<HTMLElement>(
-      SELECTOR
-    );
-
-    const editor = CodeMirror(codeMirrorContainer, {
-      theme: 'solarized',
-      lineNumbers: true,
-      styleSelectedText: true,
-      mode: 'go',
-      readOnly: 'nocursor'
-    } as any);
-
-    this.paramsSubscription = this.activeRoute.paramMap
-      .pipe(
-        map(paramMap =>
-          KytheTarget.fromCorpusAndPath({
-            corpus: paramMap.get('corpus'),
-            path: paramMap.get('path')
-          })
+    this.ngZone.runOutsideAngular(() => {
+      const editor = CodeMirror(
+        this.nativeElement.querySelector<HTMLElement>(
+          CODE_MIRROR_CONTAINER_SELECTOR
         ),
-        switchMap(kytheTarget =>
-          this.kytheService.getDecorations(
-            GetDecorationsRequest.fromTicket(kytheTarget)
+        {
+          theme: 'solarized',
+          lineNumbers: true,
+          styleSelectedText: true,
+          mode: 'go',
+          readOnly: 'nocursor'
+        } as any
+      );
+
+      this.paramsSubscription = this.activeRoute.paramMap
+        .pipe(
+          map(paramMap =>
+            KytheTarget.fromCorpusAndPath({
+              corpus: paramMap.get('corpus'),
+              path: paramMap.get('path')
+            })
+          ),
+          switchMap(kytheTarget =>
+            this.kytheService.getDecorations(
+              GetDecorationsRequest.fromTicket(kytheTarget)
+            )
           )
         )
-      )
-      .subscribe(kytheDecoration => {
-        decorate(editor, kytheDecoration);
-      });
+        .subscribe(kytheDecoration => {
+          decorate(editor, kytheDecoration);
+        });
+    });
   }
 
   ngOnDestroy() {
