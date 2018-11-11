@@ -34,6 +34,7 @@ const CODE_MIRROR_CONTAINER_SELECTOR = '.code-mirror-container';
 export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
   private readonly nativeElement = this.elementRef.nativeElement as HTMLElement;
   private paramsSubscription?: Subscription;
+  private codeMirrorContainer?: HTMLDivElement;
 
   constructor(
     private readonly elementRef: ElementRef,
@@ -44,18 +45,16 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => {
-      const editor = CodeMirror(
-        this.nativeElement.querySelector<HTMLElement>(
-          CODE_MIRROR_CONTAINER_SELECTOR
-        ),
-        {
-          theme: 'solarized',
-          lineNumbers: true,
-          styleSelectedText: true,
-          mode: 'go',
-          readOnly: 'nocursor'
-        } as any
-      );
+      this.codeMirrorContainer = document.createElement('div');
+      this.codeMirrorContainer.classList.add('code-mirror-container');
+
+      const editor = CodeMirror(this.codeMirrorContainer, {
+        theme: 'solarized',
+        lineNumbers: true,
+        styleSelectedText: true,
+        mode: 'go',
+        readOnly: 'nocursor'
+      } as any);
 
       this.paramsSubscription = this.activeRoute.paramMap
         .pipe(
@@ -72,7 +71,12 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
           )
         )
         .subscribe(kytheDecoration => {
+          if (this.nativeElement.hasChildNodes()) {
+            this.nativeElement.removeChild(this.codeMirrorContainer);
+          }
           decorate(editor, kytheDecoration);
+          this.nativeElement.prepend(this.codeMirrorContainer);
+          editor.refresh();
         });
     });
   }
