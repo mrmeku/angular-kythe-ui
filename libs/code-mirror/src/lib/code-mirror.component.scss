@@ -3,6 +3,7 @@
 
 angular-kythe-ui-code-mirror {
   display: block;
+  height: calc(100vh - 64px);
 
   .code-mirror-container {
     height: 100%;

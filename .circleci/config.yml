@@ -24,13 +24,13 @@ jobs:
             - ./node_modules
       - run:
           name: lint
-          command: yarn affected:lint --base=master --parallel
+          command: yarn affected:lint --all --parallel
       - run:
           name: build
           command: yarn affected:build --all --prod --no-progress --parallel
       - run:
           name: test
-          command: yarn affected:test --base=master --parallel
+          command: yarn affected:test --all --parallel
       - deploy:
           name: Deploy
           # Deploy script from:
