@@ -64,36 +64,37 @@ var CodeMirror = __webpack_require__(/*! codemirror */ "../../node_modules/codem
 var kythe_1 = __webpack_require__(/*! @angular-kythe-ui/kythe */ "../../libs/kythe/src/index.ts");
 var router_1 = __webpack_require__(/*! @angular/router */ "../../node_modules/@angular/router/fesm5/router.js");
 var operators_1 = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
-var SELECTOR = '.code-mirror-container';
+var CODE_MIRROR_CONTAINER_SELECTOR = '.code-mirror-container';
 var CodeMirrorComponent = /** @class */ (function () {
-    function CodeMirrorComponent(elementRef, activeRoute, kytheService // @Inject(CODE_MIRROR_FACTORY)
-    ) {
+    function CodeMirrorComponent(elementRef, activeRoute, kytheService, ngZone) {
         this.elementRef = elementRef;
         this.activeRoute = activeRoute;
         this.kytheService = kytheService;
+        this.ngZone = ngZone;
         this.nativeElement = this.elementRef.nativeElement;
     }
     CodeMirrorComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
-        var codeMirrorContainer = this.nativeElement.querySelector(SELECTOR);
-        var editor = CodeMirror(codeMirrorContainer, {
-            theme: 'solarized',
-            lineNumbers: true,
-            styleSelectedText: true,
-            mode: 'go',
-            readOnly: 'nocursor'
-        });
-        this.paramsSubscription = this.activeRoute.paramMap
-            .pipe(operators_1.map(function (paramMap) {
-            return kythe_1.KytheTarget.fromCorpusAndPath({
-                corpus: paramMap.get('corpus'),
-                path: paramMap.get('path')
+        this.ngZone.runOutsideAngular(function () {
+            var editor = CodeMirror(_this.nativeElement.querySelector(CODE_MIRROR_CONTAINER_SELECTOR), {
+                theme: 'solarized',
+                lineNumbers: true,
+                styleSelectedText: true,
+                mode: 'go',
+                readOnly: 'nocursor'
             });
-        }), operators_1.switchMap(function (kytheTarget) {
-            return _this.kytheService.getDecorations(kythe_1.GetDecorationsRequest.fromTicket(kytheTarget));
-        }))
-            .subscribe(function (kytheDecoration) {
-            kythe_1.decorate(editor, kytheDecoration);
+            _this.paramsSubscription = _this.activeRoute.paramMap
+                .pipe(operators_1.map(function (paramMap) {
+                return kythe_1.KytheTarget.fromCorpusAndPath({
+                    corpus: paramMap.get('corpus'),
+                    path: paramMap.get('path')
+                });
+            }), operators_1.switchMap(function (kytheTarget) {
+                return _this.kytheService.getDecorations(kythe_1.GetDecorationsRequest.fromTicket(kytheTarget));
+            }))
+                .subscribe(function (kytheDecoration) {
+                kythe_1.decorate(editor, kytheDecoration);
+            });
         });
     };
     CodeMirrorComponent.prototype.ngOnDestroy = function () {
@@ -111,8 +112,8 @@ var CodeMirrorComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [core_1.ElementRef,
             router_1.ActivatedRoute,
-            kythe_1.KytheService // @Inject(CODE_MIRROR_FACTORY)
-        ])
+            kythe_1.KytheService,
+            core_1.NgZone])
     ], CodeMirrorComponent);
     return CodeMirrorComponent;
 }());
