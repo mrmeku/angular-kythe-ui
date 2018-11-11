@@ -1,6 +1,9 @@
 version: 2
 jobs:
   build:
+    branches:
+      ignore:
+        - gh-pages
     working_directory: ~/angular-cli-circleci
     environment:
       - SOURCE_BRANCH: master
@@ -53,6 +56,7 @@ jobs:
               cd out
 
               echo "kythe.achew22.com" > CNAME
+              cp index.html 404.html
 
               git add -A
               git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
