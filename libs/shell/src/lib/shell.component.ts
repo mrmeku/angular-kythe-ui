@@ -23,8 +23,10 @@ export class ShellComponent {
 
   readonly filePath$ = this.router.events.pipe(
     filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+    map(e => e.url),
+    startWith(this.router.url),
     map(e => {
-      const u = new URL(`http://foo/${e.url}`);
+      const u = new URL(`http://foo/${e}`);
       return u.pathname.substr(2);
     }),
     tap(u => this.titleService.setTitle(`Angular Kythe UI - ${u}`))
