@@ -1,16 +1,9 @@
-import {
-  decorate,
-  GetDecorationsRequest,
-  KytheService,
-  KytheTarget,
-  largeResponse
-} from '@angular-kythe-ui/kythe';
+import { decorate, GetDecorationsRequest, KytheService, KytheTarget } from '@angular-kythe-ui/kythe';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  Inject,
   NgZone,
   OnDestroy,
   ViewEncapsulation
@@ -18,16 +11,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import * as CodeMirror from 'codemirror';
 import { Subscription } from 'rxjs';
-import {
-  distinctUntilChanged,
-  filter,
-  first,
-  map,
-  startWith,
-  switchMap
-} from 'rxjs/operators';
+import { distinctUntilChanged, filter, first, map, switchMap } from 'rxjs/operators';
 
-const CODE_MIRROR_CONTAINER_SELECTOR = '.code-mirror-container';
 const CODE_MIRROR_ACTIVE_LINE_CLASS = 'CodeMirror-activeline';
 const CODE_MIRROR_ACTIVE_GUTTER_CLASS = 'CodeMirror-activegutter';
 const ACTIVE_LINE_OFFSET_RATIO = 0.35;
@@ -110,20 +95,26 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
           editor.refresh();
 
           const line$ = this.activeRoute.queryParamMap.pipe(
-            map(queryParamMap => parseInt(queryParamMap.get('line'), 10)),
-            distinctUntilChanged(),
-            filter(line => !isNaN(line))
+            map(queryParamMap => parseInt(queryParamMap.get('line'), 10))
           );
-          this.lineHighlighterSubscription = line$.subscribe(line => {
-            // Remove the old active line's styling.
-            CodeMirrorComponent.removeLineClass(editor, activeLine);
+          this.lineHighlighterSubscription = line$
+            .pipe(
+              distinctUntilChanged(),
+              filter(line => !isNaN(line))
+            )
+            .subscribe(line => {
+              // Remove the old active line's styling.
+              CodeMirrorComponent.removeLineClass(editor, activeLine);
 
-            // Now set the positive styling.
-            activeLine = line - 1;
-            CodeMirrorComponent.addLineClass(editor, activeLine);
-          });
+              // Now set the positive styling.
+              activeLine = line - 1;
+              CodeMirrorComponent.addLineClass(editor, activeLine);
+            });
 
           line$.pipe(first()).subscribe(line => {
+            if (isNaN(line)) {
+              return;
+            }
             // Compute the offset by figuring out the height of the
             // default line and dividing the viewable space to
             // determine how many default lines would be displayed.
