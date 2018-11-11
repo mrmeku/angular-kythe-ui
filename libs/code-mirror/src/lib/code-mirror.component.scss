@@ -1,5 +1,11 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
 @import '~codemirror/lib/codemirror.css';
 @import '~codemirror/theme/solarized.css';
+
+// TODO import the application theme.
+$palette: mat-palette($mat-indigo);
 
 angular-kythe-ui-code-mirror {
   display: block;
@@ -11,5 +17,18 @@ angular-kythe-ui-code-mirror {
 
   .CodeMirror {
     height: 100%;
+  }
+
+  .CodeMirror-activeline {
+    background: mat-color($palette, 600, 0.3);
+  }
+
+  .CodeMirror-activegutter .CodeMirror-gutter-elt {
+    background: mat-color($palette, 600, 0.8);
+    color: white;
+  }
+
+  .CodeMirror-linenumber {
+    cursor: pointer;
   }
 }
