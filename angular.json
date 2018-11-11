@@ -99,7 +99,8 @@
             "tsConfig": "apps/kythe-ui/tsconfig.app.json",
             "assets": [
               "apps/kythe-ui/src/favicon.ico",
-              "apps/kythe-ui/src/assets"
+              "apps/kythe-ui/src/assets",
+              { "glob": "**/*", "input": "./node_modules/codemirror/", "output": "/codemirror/" }
             ],
             "styles": [
               "apps/kythe-ui/src/styles.scss"
