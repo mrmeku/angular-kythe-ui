@@ -1,4 +1,5 @@
 import * as CodeMirror from 'codemirror';
+
 import { KytheDecoration, KytheOffset, KytheReference } from './declarations';
 
 function offsetToPosition(offset: KytheOffset): CodeMirror.Position {
@@ -38,10 +39,6 @@ export function decorate(
         reference.span.end.byte_offset - reference.span.start.byte_offset
       );
 
-    const el = document.createElement('a') as HTMLAnchorElement;
-    el.setAttribute('href', 'https://google.com');
-    el.innerText = elText;
-
-    (codeMirror as any).markText(start, end, { replacedWith: el });
+    (codeMirror as any).markText(start, end, { className: 'linked' });
   });
 }

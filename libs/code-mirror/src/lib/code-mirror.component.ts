@@ -1,16 +1,7 @@
-import {
-  decorate,
-  GetDecorationsRequest,
-  KytheService,
-  KytheTarget
-} from '@angular-kythe-ui/kythe';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger
-} from '@angular/animations';
+import 'codemirror/mode/go/go';
+
+import { decorate, GetDecorationsRequest, KytheService, KytheTarget } from '@angular-kythe-ui/kythe';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -23,14 +14,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import * as CodeMirror from 'codemirror';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import {
-  distinctUntilChanged,
-  filter,
-  first,
-  map,
-  switchMap,
-  tap
-} from 'rxjs/operators';
+import { distinctUntilChanged, filter, first, map, switchMap, tap } from 'rxjs/operators';
 
 const CODE_MIRROR_ACTIVE_LINE_CLASS = 'CodeMirror-activeline';
 const CODE_MIRROR_ACTIVE_GUTTER_CLASS = 'CodeMirror-activegutter';
@@ -80,7 +64,7 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
       this.codeMirrorContainer.classList.add('code-mirror-container');
 
       const editor = CodeMirror(this.codeMirrorContainer, {
-        theme: 'solarized',
+        theme: 'dracula',
         lineNumbers: true,
         styleSelectedText: true,
         mode: 'go',
