@@ -1,0 +1,12 @@
+<div
+  class="loading-container"
+  *ngIf="loading | async"
+  @fadeInOut
+  fxLayout="row"
+  fxLayoutAlign="center center"
+>
+  <mat-progress-spinner
+    mode="indeterminate"
+    [diameter]="72"
+  ></mat-progress-spinner>
+</div>

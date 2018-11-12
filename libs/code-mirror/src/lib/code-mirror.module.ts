@@ -1,16 +1,12 @@
-import { NgModule, InjectionToken } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  RouterModule,
-  Route,
-  UrlMatcher,
-  UrlSegment,
-  UrlSegmentGroup,
-  UrlMatchResult
-} from '@angular/router';
-import { CodeMirrorComponent } from './code-mirror.component';
 import { KytheModule } from '@angular-kythe-ui/kythe';
+import { CommonModule } from '@angular/common';
+import { InjectionToken, NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatProgressSpinnerModule } from '@angular/material';
+import { Route, UrlMatchResult, UrlSegment } from '@angular/router';
 import * as CodeMirror from 'codemirror';
+
+import { CodeMirrorComponent } from './code-mirror.component';
 
 export function matcher(segments: UrlSegment[]): UrlMatchResult {
   if (segments.length <= 1) {
@@ -45,9 +41,13 @@ export type CodeMirrorFactory = (
 ) => CodeMirror.Editor;
 
 @NgModule({
-  imports: [KytheModule, CommonModule],
+  imports: [
+    KytheModule,
+    MatProgressSpinnerModule,
+    FlexLayoutModule,
+    CommonModule
+  ],
   declarations: [CodeMirrorComponent],
   exports: [CodeMirrorComponent]
-  // providers: [{ provide: CODE_MIRROR_FACTORY, useFactory: () => CodeMirror }]
 })
 export class CodeMirrorModule {}

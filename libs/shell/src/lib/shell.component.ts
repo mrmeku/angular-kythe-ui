@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -23,7 +23,7 @@ export class ShellComponent {
 
   readonly filePath$ = this.router.events.pipe(
     filter((e): e is NavigationEnd => e instanceof NavigationEnd),
-    map(e => e.url),
+    map(e => e.urlAfterRedirects),
     startWith(this.router.url),
     map(e => {
       const u = new URL(`http://foo/${e}`);
