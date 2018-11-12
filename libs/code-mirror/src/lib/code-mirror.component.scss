@@ -10,6 +10,21 @@ $palette: mat-palette($mat-indigo);
 angular-kythe-ui-code-mirror {
   display: block;
   height: calc(100vh - 64px);
+  position: relative;
+
+  .loading-container {
+    position: absolute;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.18);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    mat-progress-spinner {
+      z-index: 21;
+    }
+  }
 
   .code-mirror-container {
     height: 100%;

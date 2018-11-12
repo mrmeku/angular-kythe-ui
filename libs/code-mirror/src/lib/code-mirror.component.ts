@@ -1,4 +1,16 @@
-import { decorate, GetDecorationsRequest, KytheService, KytheTarget } from '@angular-kythe-ui/kythe';
+import {
+  decorate,
+  GetDecorationsRequest,
+  KytheService,
+  KytheTarget
+} from '@angular-kythe-ui/kythe';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -10,14 +22,27 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as CodeMirror from 'codemirror';
-import { Subscription } from 'rxjs';
-import { distinctUntilChanged, filter, first, map, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import {
+  distinctUntilChanged,
+  filter,
+  first,
+  map,
+  switchMap,
+  tap
+} from 'rxjs/operators';
 
 const CODE_MIRROR_ACTIVE_LINE_CLASS = 'CodeMirror-activeline';
 const CODE_MIRROR_ACTIVE_GUTTER_CLASS = 'CodeMirror-activegutter';
 const ACTIVE_LINE_OFFSET_RATIO = 0.35;
-
 @Component({
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({ opacity: 0 })),
+      state('*', style({ opacity: 1 })),
+      transition(`* <=> *`, animate(`300ms ease-in-out`))
+    ])
+  ],
   selector: 'angular-kythe-ui-code-mirror',
   templateUrl: './code-mirror.component.html',
   styleUrls: ['./code-mirror.component.scss'],
@@ -29,6 +54,7 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
   private paramsSubscription?: Subscription;
   private lineHighlighterSubscription?: Subscription;
   private codeMirrorContainer?: HTMLDivElement;
+  readonly loading = new BehaviorSubject(true);
 
   static removeLineClass(editor: CodeMirror.Editor, line: number) {
     editor.removeLineClass(line, 'background', CODE_MIRROR_ACTIVE_LINE_CLASS);
@@ -80,14 +106,16 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
               path: paramMap.get('path')
             })
           ),
+          tap(() => this.setLoading(true)),
           switchMap(kytheTarget =>
             this.kytheService.getDecorations(
               GetDecorationsRequest.fromTicket(kytheTarget)
             )
-          )
+          ),
+          tap(() => this.setLoading(false))
         )
         .subscribe(kytheDecoration => {
-          if (this.nativeElement.hasChildNodes()) {
+          if (this.codeMirrorContainer.isConnected) {
             this.nativeElement.removeChild(this.codeMirrorContainer);
           }
           decorate(editor, kytheDecoration);
@@ -131,6 +159,12 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
             editor.scrollTo(0, lineHeight);
           });
         });
+    });
+  }
+
+  setLoading(value: boolean) {
+    this.ngZone.run(() => {
+      this.loading.next(value);
     });
   }
 
