@@ -7,7 +7,7 @@
     <angular-kythe-ui-file-tree></angular-kythe-ui-file-tree>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar class="title-bar" color="primary">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -16,7 +16,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>{{ filePath$ | async }}</span>
+      <span class="title">{{ filePath$ | async }}</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
     <!-- Add Content Here -->
