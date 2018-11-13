@@ -23,14 +23,17 @@ jobs:
             - ~/.cache/yarn
             - ./node_modules
       - run:
+          name: format-check
+          command: yarn format:check
+      - run:
           name: lint
-          command: yarn affected:lint --all --parallel
+          command: yarn affected:lint --base=origin/master --head="$CIRCLE_SHA1" --parallel
       - run:
           name: build
-          command: yarn affected:build --all --prod --no-progress --parallel
+          command: yarn affected:build --base=origin/master --head="$CIRCLE_SHA1" --aot --no-progress --parallel
       - run:
           name: test
-          command: yarn affected:test --all --parallel
+          command: yarn affected:test --base=origin/master --head="$CIRCLE_SHA1" --parallel --onlyChanged --pass-with-no-tests --ci --bail
       - deploy:
           name: Deploy
           # Deploy script from:
