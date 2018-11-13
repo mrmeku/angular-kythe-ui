@@ -9,17 +9,6 @@ angular-kythe-ui-code-mirror {
   height: calc(100vh - 64px);
   position: relative;
 
-  .linked {
-    text-decoration: underline;
-    cursor: pointer;
-    transition: background 0.1s ease-in-out;
-    background: mat-color($palette, 300, 0);
-
-    &:hover {
-      background: mat-color($palette, 300, 0.5);
-    }
-  }
-
   .loading-container {
     position: absolute;
     z-index: 20;
@@ -40,15 +29,6 @@ angular-kythe-ui-code-mirror {
 
   .CodeMirror {
     height: 100%;
-  }
-
-  .CodeMirror-activeline {
-    background: mat-color($palette, 500, 0.3);
-  }
-
-  .CodeMirror-activegutter .CodeMirror-gutter-elt {
-    background: mat-color($palette, 500, 0.8);
-    color: white;
   }
 
   .CodeMirror-linenumber {
