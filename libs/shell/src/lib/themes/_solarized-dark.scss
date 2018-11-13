@@ -123,9 +123,9 @@ $foreground: (
 $background: (
   status-bar: #073642,
   app-bar: #00212b,
-  background: #303030,
+  background: #002b36,
   hover: rgba($light-text, 0.04),
-  card: #00212b,
+  card: #002b36,
   dialog: #00212b,
   disabled-button: rgba($light-text, 0.12),
   raised-button: #00212b,
@@ -136,6 +136,29 @@ $background: (
   unselected-chip: map_get($mat-grey, 700),
   disabled-list-option: #073642
 );
+
+.CodeMirror {
+  $linked-background: #0a3446;
+  .linked {
+    text-decoration: underline;
+    cursor: pointer;
+    transition: background 0.1s ease-in-out;
+    background: rgba($linked-background, 0);
+
+    &:hover {
+      background: rgba($linked-background, 1);
+    }
+  }
+
+  .CodeMirror-activeline {
+    background: #274642;
+  }
+
+  .CodeMirror-activegutter .CodeMirror-gutter-elt {
+    background: #0c7d9d;
+    color: $light-text;
+  }
+}
 
 $solarized-theme: (
   primary: mat-palette($primary),
