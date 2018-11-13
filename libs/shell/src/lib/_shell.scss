@@ -11,7 +11,8 @@ body {
 
 @import '~@angular/material/theming';
 @import '~codemirror/lib/codemirror.css';
-@import '~codemirror/theme/dracula.css';
+@import '~codemirror/theme/solarized.css';
+@import './themes/solarized-dark';
 
 // Plus imports for other components in your app.
 
@@ -20,12 +21,7 @@ body {
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
-$primary: mat-palette($mat-indigo);
-$accent: mat-palette($mat-blue);
-$warn: mat-palette($mat-red);
-$theme: mat-dark-theme($primary, $accent, $warn);
-
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($theme);
+@include angular-material-theme($solarized-theme);
