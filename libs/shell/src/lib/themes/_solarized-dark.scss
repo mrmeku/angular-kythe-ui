@@ -121,19 +121,20 @@ $foreground: (
 );
 
 $background: (
-  status-bar: #00212b,
+  status-bar: #073642,
   app-bar: #00212b,
-  background: #1c1c1c,
-  hover: rgba(#e4e4e4, 0.04),
+  background: #303030,
+  hover: rgba($light-text, 0.04),
+  card: #00212b,
   dialog: #00212b,
-  disabled-button: rgba(#e4e4e4, 0.04),
-  raised-button: #004052,
-  focused-button: $light-focused,
+  disabled-button: rgba($light-text, 0.12),
+  raised-button: #00212b,
+  focused-button: $light-text,
   selected-button: #00212b,
   selected-disabled-button: #00212b,
-  disabled-button-toggle: #00212b,
-  unselected-chip: #004052,
-  disabled-list-option: #00212b
+  disabled-button-toggle: #073642,
+  unselected-chip: map_get($mat-grey, 700),
+  disabled-list-option: #073642
 );
 
 $solarized-theme: (
@@ -142,5 +143,5 @@ $solarized-theme: (
   warn: mat-palette($warn),
   is-dark: true,
   foreground: $foreground,
-  background: $mat-dark-theme-background
+  background: $background
 );
