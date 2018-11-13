@@ -1,0 +1,146 @@
+@import '~@angular/material/theming';
+
+$light-text: #eee8d5;
+$dark-text: #073642;
+
+$primary: (
+  50: #e0e8ea,
+  100: #b3c6cb,
+  200: #80a0a9,
+  300: #4d7986,
+  400: #265d6c,
+  500: #004052,
+  600: #003a4b,
+  700: #003241,
+  800: #002a38,
+  900: #001c28,
+  A100: #63c3ff,
+  A200: #30afff,
+  A400: #009bfc,
+  A700: #008be2,
+  contrast: (
+    50: $dark-text,
+    100: $dark-text,
+    200: $dark-text,
+    300: $light-text,
+    400: $light-text,
+    500: $light-text,
+    600: $light-text,
+    700: $light-text,
+    800: $light-text,
+    900: $light-text,
+    A100: $dark-text,
+    A200: $dark-text,
+    A400: $light-text,
+    A700: $light-text
+  )
+);
+
+$accent: (
+  50: #f6f1e0,
+  100: #e9dcb3,
+  200: #dac480,
+  300: #cbac4d,
+  400: #c09b26,
+  500: #b58900,
+  600: #ae8100,
+  700: #a57600,
+  800: #9d6c00,
+  900: #8d5900,
+  A100: #ffe1b9,
+  A200: #ffcb86,
+  A400: #ffb553,
+  A700: #ffaa3a,
+  contrast: (
+    50: $dark-text,
+    100: $dark-text,
+    200: $dark-text,
+    300: $dark-text,
+    400: $dark-text,
+    500: $dark-text,
+    600: $light-text,
+    700: $light-text,
+    800: $light-text,
+    900: $light-text,
+    A100: $dark-text,
+    A200: $dark-text,
+    A400: $dark-text,
+    A700: $dark-text
+  )
+);
+
+$warn: (
+  50: #fbe6e6,
+  100: #f5c2c1,
+  200: #ee9997,
+  300: #e7706d,
+  400: #e1514e,
+  500: #dc322f,
+  600: #d82d2a,
+  700: #d32623,
+  800: #ce1f1d,
+  900: #c51312,
+  A100: #fff4f4,
+  A200: #ffc1c1,
+  A400: #ff8f8e,
+  A700: #ff7574,
+  contrast: (
+    50: $dark-text,
+    100: $dark-text,
+    200: $dark-text,
+    300: $dark-text,
+    400: $light-text,
+    500: $light-text,
+    600: $light-text,
+    700: $light-text,
+    800: $light-text,
+    900: $light-text,
+    A100: $dark-text,
+    A200: $dark-text,
+    A400: $dark-text,
+    A700: $dark-text
+  )
+);
+
+$foreground: (
+  base: #e4e4e4,
+  divider: $light-dividers,
+  dividers: $light-dividers,
+  disabled: $light-disabled-text,
+  disabled-button: rgba(#eee8d5, 0.3),
+  disabled-text: $light-disabled-text,
+  elevation: black,
+  hint-text: $light-disabled-text,
+  secondary-text: $light-secondary-text,
+  icon: #e4e4e4,
+  icons: #e4e4e4,
+  text: #e4e4e4,
+  slider-min: #e4e4e4,
+  slider-off: rgba(#eee8d5, 0.3),
+  slider-off-active: rgba(#eee8d5, 0.3)
+);
+
+$background: (
+  status-bar: #00212b,
+  app-bar: #00212b,
+  background: #1c1c1c,
+  hover: rgba(#e4e4e4, 0.04),
+  dialog: #00212b,
+  disabled-button: rgba(#e4e4e4, 0.04),
+  raised-button: #004052,
+  focused-button: $light-focused,
+  selected-button: #00212b,
+  selected-disabled-button: #00212b,
+  disabled-button-toggle: #00212b,
+  unselected-chip: #004052,
+  disabled-list-option: #00212b
+);
+
+$solarized-theme: (
+  primary: mat-palette($primary),
+  accent: mat-palette($accent),
+  warn: mat-palette($warn),
+  is-dark: true,
+  foreground: $foreground,
+  background: $mat-dark-theme-background
+);
