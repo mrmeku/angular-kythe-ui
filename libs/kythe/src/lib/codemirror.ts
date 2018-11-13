@@ -1,6 +1,10 @@
 import * as CodeMirror from 'codemirror';
 
-import { KytheDecoration, KytheOffset, KytheReference } from './declarations';
+import {
+  KytheDecoration,
+  KytheOffset,
+  KytheReference
+} from './kythe.declarations';
 
 function offsetToPosition(offset: KytheOffset): CodeMirror.Position {
   return { ch: offset.column_offset as number, line: offset.line_number - 1 };

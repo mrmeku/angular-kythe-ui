@@ -5,8 +5,9 @@
 export * from './lib/kythe.service';
 export * from './lib/kythe.module';
 
-export * from './lib/declarations';
-
+export * from './lib/kythe.declarations';
+export * from './lib/get-decorations-request';
+export * from './lib/kythe.target';
 export * from './lib/codemirror';
 
 /**
