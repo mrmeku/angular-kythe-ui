@@ -1,4 +1,4 @@
-import { KytheDecoration } from '../lib/declarations';
+import { KytheDecoration } from '../lib/kythe.declarations';
 
 export const response: KytheDecoration = {
   location: {

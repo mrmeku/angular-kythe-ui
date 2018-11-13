@@ -1,26 +1,11 @@
+import { KytheService } from '@angular-kythe-ui/kythe';
 import { CollectionViewer, SelectionChange } from '@angular/cdk/collections';
 import { DataSource } from '@angular/cdk/table';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { BehaviorSubject, merge, Observable } from 'rxjs';
 import { first, map, tap } from 'rxjs/operators';
-import { KytheTarget, KytheService } from '@angular-kythe-ui/kythe';
 
-export class DynamicFlatNode {
-  isLoading: BehaviorSubject<boolean>;
-
-  constructor(
-    readonly kytheTarget: KytheTarget,
-    readonly name: string,
-    readonly level: number,
-    isLoading: boolean = false
-  ) {
-    this.isLoading = new BehaviorSubject(isLoading);
-  }
-
-  static fromKytheTarget(kytheTarget: KytheTarget, level: number) {
-    return new DynamicFlatNode(kytheTarget, kytheTarget.corpus, level);
-  }
-}
+import { DynamicFlatNode } from './dynamic-flat-node';
 
 export class FileTreeDataSource extends DataSource<DynamicFlatNode> {
   dataChange = new BehaviorSubject<DynamicFlatNode[]>([]);

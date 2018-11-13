@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FileTreeDataSource, DynamicFlatNode } from './file-tree.data-source';
-import { FlatTreeControl } from '@angular/cdk/tree';
 import { KytheService } from '@angular-kythe-ui/kythe';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { Component, OnInit } from '@angular/core';
+
+import { DynamicFlatNode } from './dynamic-flat-node';
+import { FileTreeDataSource } from './file-tree.data-source';
 
 @Component({
   selector: 'angular-kythe-ui-file-tree',

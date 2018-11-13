@@ -24,3 +24,25 @@ export interface KytheDecoration {
   source_text: string;
   reference: KytheReference[];
 }
+
+export interface CorpusRoot {
+  name: string;
+  root: string[];
+}
+
+export interface CorpusRootResponse {
+  corpus: CorpusRoot[];
+}
+
+export interface DirRequest {
+  corpus: string;
+  path: string;
+  root: null;
+}
+
+export interface CorpusAndPath {
+  corpus: string;
+  path: string;
+}
+
+export type KytheUri = string;
