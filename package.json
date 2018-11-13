@@ -60,7 +60,7 @@
     "@types/file-saver": "2.0.0",
     "@types/jest": "23.3.9",
     "@types/lodash": "4.14.118",
-    "@types/node": "10.12.5",
+    "@types/node": "10.12.6",
     "chai": "4.2.0",
     "codelyzer": "4.5.0",
     "cypress": "3.1.1",
