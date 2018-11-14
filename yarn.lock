@@ -169,10 +169,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/compiler-cli@7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-7.0.3.tgz#5d2567056251a8417ad0154de5d6757fa502f837"
-  integrity sha512-8/SNgyce0Eqhfn8N/XkwSDSxTJryA+/EVLA68D2IopOSg/95u6GgYv3mVNNQnclSzC4g1FuK0zt4z0zRIWZ6JA==
+"@angular/compiler-cli@7.0.4":
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-7.0.4.tgz#f96fc1c0aec27ee97ec5f13a8eb72bc8b964db97"
+  integrity sha512-kvhWt6OTb1Uduns9Vm+Dwd/UUBNSEU6Jgu+QOPeHr7lg+4NTyr9uQLU0DtfBP0ljOlds8esmfii5IIFTeUQw1Q==
   dependencies:
     canonical-path "1.0.0"
     chokidar "^1.4.2"
@@ -183,6 +183,7 @@
     reflect-metadata "^0.1.2"
     shelljs "^0.8.1"
     source-map "^0.6.1"
+    tslib "^1.9.0"
     yargs "9.0.1"
 
 "@angular/compiler@^7.0.0":
@@ -213,10 +214,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/language-service@7.0.3":
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-7.0.3.tgz#e43512ad801f7ecfd5625c34e50d27ce245a32ce"
-  integrity sha512-a8S/kTK/f7QaA7Nwm0KmfR+e7p4ZJ1keotfQD8r9Zq73+DD6yS+DSc+NBikmHui9mn9zY1C08C4SJQ5/5HtVhA==
+"@angular/language-service@7.0.4":
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-7.0.4.tgz#db221f183725ff54c1188aec7acb2948e29f4c50"
+  integrity sha512-CuJ2Ii97sNoN1HOZOLxG1lEHsQFi8K/RSB/k2suWPKzdM53ldSkKoYRac38zW/uqNABYItgvxb7w0Vi7HhxLsg==
 
 "@angular/material@^7.0.3":
   version "7.0.3"
