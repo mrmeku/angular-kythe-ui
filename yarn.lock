@@ -338,10 +338,10 @@
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.1.7.tgz#1b8e33b61a8c09cbe1f85133071baa0dbf9fa71a"
   integrity sha512-2Y8uPt0/jwjhQ6EiluT0XCri1Dbplr0ZxfFXUz+ye13gaqE8u5gL5ppao1JrUYr9cIip5S6MvQzBS7Kke7U9VA==
 
-"@types/codemirror@^0.0.67":
-  version "0.0.67"
-  resolved "https://registry.yarnpkg.com/@types/codemirror/-/codemirror-0.0.67.tgz#245f83840559a9f523272521be7933ab47628363"
-  integrity sha512-DeKxPn/Hxn32WarA8lSLAG6IER0g+Gu7raCh75+J/nvN1iSKy305DRRSbRZUkXSFRvTu9VA7HRp4m+du7cV0pg==
+"@types/codemirror@^0.0.68":
+  version "0.0.68"
+  resolved "https://registry.yarnpkg.com/@types/codemirror/-/codemirror-0.0.68.tgz#e19dc02443a8e5dfc768292ae5cf3da49eb6fedc"
+  integrity sha512-ihggA4sw1InKYkO3Mk1cym8XUgnvS/ffM27J9LNirXOjNaLG5fIunTt6Rhd7ZQcxBdedhSj4RCFShoedHulFsA==
 
 "@types/expect@1.20.3":
   version "1.20.3"
