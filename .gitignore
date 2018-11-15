@@ -37,3 +37,11 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Bazel stuff
+bazel-angular-kythe-ui
+bazel-out
+bazel-bin
+bazel-genfiles
+bazel-out
+bazel-testlogs
