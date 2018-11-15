@@ -33,7 +33,7 @@ import (
 
 	"github.com/google/zoekt"
 	"github.com/google/zoekt/query"
-	"github.com/google/zoekt/rest"
+	"github.com/mrmeku/angular-kythe-ui/zoekt/rest"
 )
 
 var Funcmap = template.FuncMap{

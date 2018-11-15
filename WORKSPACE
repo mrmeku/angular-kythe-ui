@@ -18,6 +18,36 @@ go_rules_dependencies()
 
 go_register_toolchains()
 
-load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
 gazelle_dependencies()
+
+go_repository(
+    name = "com_github_fsnotify_fsnotify",
+    importpath = "github.com/fsnotify/fsnotify",
+    tag = "v1.4.7",
+)
+
+go_repository(
+    name = "com_github_google_zoekt",
+    commit = "610dcff71c4a",
+    importpath = "github.com/google/zoekt",
+)
+
+go_repository(
+    name = "org_golang_x_net",
+    commit = "adae6a3d119a",
+    importpath = "golang.org/x/net",
+)
+
+go_repository(
+    name = "org_golang_x_sync",
+    commit = "42b317875d0f",
+    importpath = "golang.org/x/sync",
+)
+
+go_repository(
+    name = "org_golang_x_sys",
+    commit = "66b7b1311ac8",
+    importpath = "golang.org/x/sys",
+)
