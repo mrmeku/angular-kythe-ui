@@ -22,6 +22,91 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
 gazelle_dependencies()
 
+# Manually added Zoekt deps
+## gopkg.in/src-d/go-git.v4
+
+go_repository(
+    name = "in_gopkg_src_d_go_git_v4",
+    importpath = "gopkg.in/src-d/go-git.v4",
+    remote = "https://github.com/src-d/go-git",
+    tag = "v4.7.1",
+    vcs = "git",
+)
+
+go_repository(
+    name = "com_github_src_d_gcfg",
+    importpath = "github.com/src-d/gcfg",
+    tag = "v1.4.0",
+)
+
+go_repository(
+    name = "in_gopkg_gcfg_v1",
+    importpath = "gopkg.in/gcfg.v1",
+    tag = "v1.2.3",
+)
+
+go_repository(
+    name = "org_golang_x_crypto",
+    commit = "3d3f9f413869b949e48070b5bc593aa22cc2b8f2",
+    importpath = "golang.org/x/crypto",
+)
+
+go_repository(
+    name = "in_gopkg_src_d_go_billy_v4",
+    importpath = "gopkg.in/src-d/go-billy.v4",
+    tag = "v4.3.0",
+)
+
+go_repository(
+    name = "com_github_emirpasic_gods",
+    importpath = "github.com/emirpasic/gods",
+    tag = "v1.12.0",
+)
+
+go_repository(
+    name = "in_gopkg_warnings_v0",
+    importpath = "gopkg.in/warnings.v0",
+    tag = "v0.1.2",
+)
+
+go_repository(
+    name = "com_github_sergi_go_diff",
+    importpath = "github.com/sergi/go-diff",
+    tag = "v1.0.0",
+)
+
+go_repository(
+    name = "com_github_jbenet_go_context",
+    commit = "d14ea06fba99483203c19d92cfcd13ebe73135f4",
+    importpath = "github.com/jbenet/go-context",
+)
+
+go_repository(
+    name = "com_github_kevinburke_ssh_config",
+    importpath = "github.com/kevinburke/ssh_config",
+    tag = "0.5",
+)
+
+go_repository(
+    name = "com_github_xanzy_ssh_agent",
+    importpath = "github.com/xanzy/ssh-agent",
+    tag = "v0.2.0",
+)
+
+go_repository(
+    name = "com_github_mitchellh_go_homedir",
+    importpath = "github.com/mitchellh/go-homedir",
+    tag = "v1.0.0",
+)
+
+go_repository(
+    name = "com_github_pelletier_go_buffruneio",
+    importpath = "github.com/pelletier/go-buffruneio",
+    tag = "v0.2.0",
+)
+
+# End of manually added deps
+
 go_repository(
     name = "com_github_fsnotify_fsnotify",
     importpath = "github.com/fsnotify/fsnotify",
