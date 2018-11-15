@@ -66,3 +66,13 @@ jobs:
 
               git push origin $TARGET_BRANCH
             fi
+
+  bazel:
+    docker:
+      - image: l.gcr.io/google/bazel:latest
+    working_directory: ~/angular-cli-circleci
+    steps:
+      - checkout
+      - run:
+          name: Run tests with Bazel
+          command: bazel test //...
