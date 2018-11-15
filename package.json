@@ -40,7 +40,7 @@
     "@angular/platform-browser-dynamic": "^7.0.0",
     "@angular/router": "^7.0.0",
     "@nrwl/nx": "7.0.2",
-    "@types/codemirror": "^0.0.68",
+    "@types/codemirror": "^0.0.69",
     "codemirror": "^5.41.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
