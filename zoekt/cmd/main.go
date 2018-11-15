@@ -107,6 +107,7 @@ func main() {
 	listen := flag.String("listen", ":6070", "listen on this address.")
 	index := flag.String("index", build.DefaultDir, "set index directory to use")
 	html := flag.Bool("html", true, "enable HTML interface")
+	restapi := flag.Bool("restapi", true, "enable HTML interface")
 	print := flag.Bool("print", false, "enable local result URLs")
 	enablePprof := flag.Bool("pprof", false, "set to enable remote profiling.")
 	sslCert := flag.String("ssl_cert", "", "set path to SSL .pem holding certificate.")
@@ -161,6 +162,7 @@ func main() {
 
 	s.Print = *print
 	s.HTML = *html
+	s.RESTAPI = *restapi
 
 	if *hostCustomization != "" {
 		s.HostCustomQueries = map[string]string{}
