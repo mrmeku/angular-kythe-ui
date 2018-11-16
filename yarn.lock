@@ -338,10 +338,10 @@
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.1.7.tgz#1b8e33b61a8c09cbe1f85133071baa0dbf9fa71a"
   integrity sha512-2Y8uPt0/jwjhQ6EiluT0XCri1Dbplr0ZxfFXUz+ye13gaqE8u5gL5ppao1JrUYr9cIip5S6MvQzBS7Kke7U9VA==
 
-"@types/codemirror@^0.0.68":
-  version "0.0.68"
-  resolved "https://registry.yarnpkg.com/@types/codemirror/-/codemirror-0.0.68.tgz#e19dc02443a8e5dfc768292ae5cf3da49eb6fedc"
-  integrity sha512-ihggA4sw1InKYkO3Mk1cym8XUgnvS/ffM27J9LNirXOjNaLG5fIunTt6Rhd7ZQcxBdedhSj4RCFShoedHulFsA==
+"@types/codemirror@^0.0.69":
+  version "0.0.69"
+  resolved "https://registry.yarnpkg.com/@types/codemirror/-/codemirror-0.0.69.tgz#a40ead562be9173dc18c0816c7f54c1fc272f937"
+  integrity sha512-NtAjeJ5vqEry4w/UtKrpbPf/yViBCGB0MYTKk8/GKEEBEc8p592dg28UzDBFtUpw1+F002crt15w5hZo0zHgFw==
 
 "@types/expect@1.20.3":
   version "1.20.3"
@@ -353,10 +353,10 @@
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.9.tgz#c16b55186ee73ae65e001fbee69d392c51337ad1"
   integrity sha512-wNMwXSUcwyYajtbayfPp55tSayuDVU6PfY5gzvRSj80UvxdXEJOVPnUVajaOp7NgXLm+1e2ZDLULmpsU9vDvQw==
 
-"@types/node@10.12.8":
-  version "10.12.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.8.tgz#d0a3ab5a6e61458c492304e2776ac136b81db927"
-  integrity sha512-INamyRZG4rW3lDCUmwVd5Xho/bXvQm/v1yP8V0UN1RuInU7RoWoaO570b+yLX4Ia/0szsx1wa8VzcsVlsvbWLA==
+"@types/node@10.12.9":
+  version "10.12.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.9.tgz#a07bfa74331471e1dc22a47eb72026843f7b95c8"
+  integrity sha512-eajkMXG812/w3w4a1OcBlaTwsFPO5F7fJ/amy+tieQxEMWBlbV1JGSjkFM+zkHNf81Cad+dfIRA+IBkvmvdAeA==
 
 "@types/yargs@^11.0.0":
   version "11.1.2"
