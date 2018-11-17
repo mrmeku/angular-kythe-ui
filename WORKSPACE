@@ -22,6 +22,22 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
 gazelle_dependencies()
 
+## Rules docker
+
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = "29d109605e0d6f9c892584f07275b8c9260803bf0c6fcb7de2623b2bedc910bd",
+    strip_prefix = "rules_docker-0.5.1",
+    urls = ["https://github.com/bazelbuild/rules_docker/archive/v0.5.1.tar.gz"],
+)
+
+load(
+    "@io_bazel_rules_docker//go:image.bzl",
+    _go_image_repos = "repositories",
+)
+
+_go_image_repos()
+
 # Manually added Zoekt deps
 ## gopkg.in/src-d/go-git.v4
 

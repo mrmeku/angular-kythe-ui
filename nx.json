@@ -29,6 +29,9 @@
     "demo": {
       "tags": []
     },
+    "zoekt": {
+      "tags": []
+    },
     "source-viewer": {
       "tags": []
     }

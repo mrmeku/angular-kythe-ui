@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 
 	"github.com/google/zoekt"
 	"github.com/google/zoekt/query"
@@ -48,9 +49,8 @@ func verifyAPIInput(w http.ResponseWriter, r *http.Request) ([]byte, error) {
 		return nil, &httpError{"must use POST", http.StatusMethodNotAllowed}
 	}
 
-	if got := r.Header.Get("Content-Type"); got != jsonContentType {
-		return nil, &httpError{"must use " + jsonContentType, http.StatusNotAcceptable}
-
+	if got := strings.ToLower(r.Header.Get("Content-Type")); got != jsonContentType {
+		return nil, &httpError{"must use " + jsonContentType + " but got '" + got + "'", http.StatusNotAcceptable}
 	}
 
 	content, err := ioutil.ReadAll(r.Body)

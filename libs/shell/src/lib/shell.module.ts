@@ -1,4 +1,16 @@
+import { CodeMirrorModule } from '@angular-kythe-ui/code-mirror';
+import { FileTreeModule } from '@angular-kythe-ui/file-tree';
+import { KytheModule } from '@angular-kythe-ui/kythe';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatListModule,
+  MatSidenavModule,
+  MatToolbarModule
+} from '@angular/material';
+
 import { RouterModule, UrlMatchResult, UrlSegment } from '@angular/router';
 
 import { ShellComponent } from './shell.component';
@@ -10,9 +22,7 @@ export function sourceViewerRouteMatcher(
 ): UrlMatchResult | null {
   return !segments[0] || segments[0].path === SEARCH_PATH
     ? null
-    : {
-        consumed: []
-      };
+    : { consumed: [] };
 }
 
 @NgModule({
@@ -21,20 +31,23 @@ export function sourceViewerRouteMatcher(
     RouterModule.forChild([
       {
         path: SEARCH_PATH,
-        // loadChildren: './customers/customers.module#CustomersModule'
-        redirectTo: '',
-        pathMatch: 'full'
+        loadChildren: '@angular-kythe-ui/zoekt#ZoektModule'
       },
       {
         matcher: sourceViewerRouteMatcher,
         loadChildren: '@angular-kythe-ui/source-viewer#SourceViewerModule'
       },
-      {
-        path: '',
-        redirectTo: '',
-        pathMatch: 'full'
-      }
-    ])
+      { path: '', redirectTo: '', pathMatch: 'full' }
+    ]),
+    FileTreeModule,
+    KytheModule,
+    CodeMirrorModule,
+    CommonModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatButtonModule
   ],
   exports: [ShellComponent]
 })

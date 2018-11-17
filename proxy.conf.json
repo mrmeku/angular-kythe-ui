@@ -7,5 +7,14 @@
       "changeOrigin": true,
       "logLevel": "debug",
       "secure": true
+    },
+    "/zoekt": {
+      "target": "https://zoekt.achew22.com/",
+      "pathRewrite": {
+        "^/zoekt": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "secure": false
     }
 }

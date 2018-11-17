@@ -1,0 +1,15 @@
+<div>
+  <mat-card *ngFor="let file of (searchResult$ | async).Files; trackBy: trackBy">
+    <div>Repo: {{ file.Repo }}</div>
+    <div>Branches: {{ file.Branches }}</div>
+    <div>FileName: <a [routerLink]="'/kythe.io/' + file.FileName">{{ file.FileName }}</a></div>
+    <ul>
+      <li *ngFor="let line of file.Lines">
+        Line number: <a [routerLink]="'/kythe.io/' + file.FileName" [queryParams]="{line:line.LineNumber}">
+          {{ line.LineNumber }}
+        </a>
+        Line: {{ line.Line }}
+      </li>
+    </ul>
+  </mat-card>
+</div>
