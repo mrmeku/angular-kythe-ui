@@ -3,14 +3,13 @@ import { FileTreeModule } from '@angular-kythe-ui/file-tree';
 import { KytheModule } from '@angular-kythe-ui/kythe';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatButtonModule,
   MatIconModule,
-  MatListModule,
-  MatSidenavModule,
+  MatInputModule,
   MatToolbarModule
 } from '@angular/material';
-
 import { RouterModule, UrlMatchResult, UrlSegment } from '@angular/router';
 
 import { ShellComponent } from './shell.component';
@@ -43,11 +42,11 @@ export function sourceViewerRouteMatcher(
     KytheModule,
     CodeMirrorModule,
     CommonModule,
-    MatIconModule,
-    MatSidenavModule,
     MatToolbarModule,
-    MatListModule,
-    MatButtonModule
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    FlexLayoutModule
   ],
   exports: [ShellComponent]
 })

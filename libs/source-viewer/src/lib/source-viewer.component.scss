@@ -1,5 +1,5 @@
 .sidenav-container {
-  height: 100%;
+  height: calc(100vh - 128px);
 }
 
 .sidenav {
@@ -31,5 +31,5 @@
 }
 
 angular-kythe-ui-code-mirror {
-  height: calc(100vh - 64px);
+  height: calc(100vh - 128px);
 }

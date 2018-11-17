@@ -4,7 +4,7 @@
 
 :host {
   position: relative;
-  height: calc(100% - 64px);
+  height: 100%;
   display: block;
 }
 
@@ -20,6 +20,5 @@
   mat-progress-spinner {
     z-index: 21;
     position: relative;
-    top: -32px;
   }
 }
