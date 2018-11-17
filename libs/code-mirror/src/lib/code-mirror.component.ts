@@ -18,13 +18,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  Input,
   NgZone,
   OnDestroy,
   ViewEncapsulation
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as CodeMirror from 'codemirror';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import {
   distinctUntilChanged,
   filter,
@@ -52,11 +53,13 @@ const ACTIVE_LINE_OFFSET_RATIO = 0.35;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
+  @Input() readonly kytheTarget$: Observable<KytheTarget>;
+
   private readonly nativeElement = this.elementRef.nativeElement as HTMLElement;
-  private paramsSubscription?: Subscription;
+  private targetSubscription?: Subscription;
   private lineHighlighterSubscription?: Subscription;
   private codeMirrorContainer?: HTMLDivElement;
-  readonly loading = new BehaviorSubject(true);
+  readonly loading = new BehaviorSubject(false);
 
   static removeLineClass(editor: CodeMirror.Editor, line: number) {
     editor.removeLineClass(line, 'background', CODE_MIRROR_ACTIVE_LINE_CLASS);
@@ -100,14 +103,9 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
 
       let activeLine = 0;
 
-      this.paramsSubscription = this.activeRoute.paramMap
+      this.targetSubscription = this.kytheTarget$
         .pipe(
-          map(paramMap =>
-            KytheTarget.fromCorpusAndPath({
-              corpus: paramMap.get('corpus'),
-              path: paramMap.get('path')
-            })
-          ),
+          filter(target => !target.isDirectory),
           tap(() => this.setLoading(true)),
           switchMap(kytheTarget =>
             this.kytheService.getDecorations(
@@ -171,8 +169,8 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.paramsSubscription) {
-      this.paramsSubscription.unsubscribe();
+    if (this.targetSubscription) {
+      this.targetSubscription.unsubscribe();
     }
     if (this.lineHighlighterSubscription) {
       this.lineHighlighterSubscription.unsubscribe();

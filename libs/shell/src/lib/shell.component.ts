@@ -1,9 +1,10 @@
+import { KytheTarget } from '@angular-kythe-ui/kythe';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, map, startWith, tap } from 'rxjs/operators';
+import { filter, map, shareReplay, startWith, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'angular-kythe-ui-shell',
@@ -29,6 +30,18 @@ export class ShellComponent {
       const u = new URL(`http://foo/${e}`);
       return u.pathname.substr(2);
     }),
-    tap(u => this.titleService.setTitle(`Angular Kythe UI - ${u}`))
+    filter(p => Boolean(p)),
+    tap(u => this.titleService.setTitle(`Angular Kythe UI - ${u}`)),
+    shareReplay()
+  );
+
+  readonly kytheTarget$ = this.filePath$.pipe(
+    map(path => {
+      const [corpus] = path.split('/');
+      return KytheTarget.fromCorpusAndPath({
+        corpus,
+        path
+      });
+    })
   );
 }

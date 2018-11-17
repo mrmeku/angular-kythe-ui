@@ -14,6 +14,6 @@ export class DynamicFlatNode {
   }
 
   static fromKytheTarget(kytheTarget: KytheTarget, level: number) {
-    return new DynamicFlatNode(kytheTarget, kytheTarget.corpus, level);
+    return new DynamicFlatNode(kytheTarget, kytheTarget.name, level);
   }
 }
