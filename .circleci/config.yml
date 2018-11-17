@@ -66,8 +66,10 @@ jobs:
 
               git push origin $TARGET_BRANCH
             fi
-
   bazel:
+    branches:
+      ignore:
+        - gh-pages
     docker:
       - image: l.gcr.io/google/bazel:latest
     working_directory: ~/angular-cli-circleci

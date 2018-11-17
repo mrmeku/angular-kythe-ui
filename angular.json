@@ -22,6 +22,25 @@
         }
       }
     },
+    "zoekt": {
+      "root": "libs/zoekt",
+      "sourceRoot": "libs/zoekt/src",
+      "projectType": "library",
+      "prefix": "angular-libs/zoekt-ui",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zoekt/tsconfig.lib.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "shell": {
       "root": "libs/shell",
       "sourceRoot": "libs/shell/src",

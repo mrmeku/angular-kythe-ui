@@ -1,0 +1,13 @@
+<div>
+  <mat-card *ngFor="let file of (searchResult$ | async).Files">
+    <div>Repo: {{ file.Repo }}</div>
+    <div>Branches: {{ file.Branches }}</div>
+    <div>FileName: {{ file.FileName }}</div>
+    <ul>
+      <li *ngFor="let line of file.Lines">
+        Line number: {{ line.LineNumber }}
+        Line: {{ line.Line }}
+      </li>
+    </ul>
+  </mat-card>
+</div>

@@ -1,37 +1,34 @@
-import { NgModule } from '@angular/core';
-import { ShellComponent } from './shell.component';
-import {
-  MatSidenavModule,
-  MatToolbarModule,
-  MatListModule,
-  MatButtonModule,
-  MatIconModule
-} from '@angular/material';
-import { CommonModule } from '@angular/common';
-import { KytheModule } from '@angular-kythe-ui/kythe';
 import {
   CodeMirrorModule,
   codeMirrorRoutes
 } from '@angular-kythe-ui/code-mirror';
-import { FileTreeModule } from '@angular-kythe-ui/file-tree';
-import { RouterModule } from '@angular/router';
+import {FileTreeModule} from '@angular-kythe-ui/file-tree';
+import {KytheModule} from '@angular-kythe-ui/kythe';
+import {ZoektModule, zoektRoutes} from '@angular-kythe-ui/zoekt';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatListModule,
+  MatSidenavModule,
+  MatToolbarModule
+} from '@angular/material';
+import {RouterModule} from '@angular/router';
 
-const routes = RouterModule.forChild(codeMirrorRoutes);
+import {ShellComponent} from './shell.component';
+
+// const routes = RouterModule.forChild(codeMirrorRoutes);
+const routes = RouterModule.forChild(zoektRoutes);
 
 @NgModule({
-  declarations: [ShellComponent],
-  imports: [
-    routes,
-    FileTreeModule,
-    KytheModule,
-    CodeMirrorModule,
-    CommonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatButtonModule
+  declarations : [ ShellComponent ],
+  imports : [
+    routes, FileTreeModule, KytheModule, ZoektModule, CodeMirrorModule,
+    CommonModule, MatIconModule, MatSidenavModule, MatToolbarModule,
+    MatListModule, MatButtonModule
   ],
-  exports: [ShellComponent]
+  exports : [ ShellComponent ]
 })
-export class ShellModule {}
+export class ShellModule {
+}

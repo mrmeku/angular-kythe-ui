@@ -19,6 +19,9 @@
       "@angular-kythe-ui/kythe": [
         "libs/kythe/src/index.ts"
       ],
+      "@angular-kythe-ui/zoekt": [
+        "libs/zoekt/src/index.ts"
+      ],
       "@angular-kythe-ui/shell": [
         "libs/shell/src/index.ts"
       ],

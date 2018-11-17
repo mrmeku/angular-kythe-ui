@@ -38,10 +38,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Bazel stuff
+# Bazel
+bazel-bin
 bazel-angular-kythe-ui
 bazel-out
-bazel-bin
 bazel-genfiles
-bazel-out
 bazel-testlogs
