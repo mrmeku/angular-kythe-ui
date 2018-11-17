@@ -14,8 +14,11 @@ import { filter, map, shareReplay, startWith, tap } from 'rxjs/operators';
 })
 export class SourceViewerComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(map(result => result.matches));
+    .observe([Breakpoints.Handset, Breakpoints.Small])
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 
   constructor(
     private readonly breakpointObserver: BreakpointObserver,
