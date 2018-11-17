@@ -85,6 +85,7 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
       this.codeMirrorContainer.classList.add('code-mirror-container');
 
       const editor = CodeMirror(this.codeMirrorContainer, {
+        lineWrapping: true,
         theme: 'solarized dark',
         lineNumbers: true,
         styleSelectedText: true,

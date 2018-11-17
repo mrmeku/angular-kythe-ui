@@ -1,26 +1,23 @@
 <mat-toolbar class="title-bar">
-    <button
-      type="button"
-      aria-label="Toggle sidenav"
-      mat-icon-button
-      (click)="drawer.toggle()"
-      *ngIf="isHandset$ | async">
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button>
-    <span class="title">{{ (filePath$ | async) }}</span>
-  </mat-toolbar>
+  <span class="title">{{ filePath$ | async }}</span>
+</mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav"
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="!(isHandset$ | async)">
-      <angular-kythe-ui-file-tree
-        *ngIf="kytheTarget$ | async as root"
-        [rootedAt]="root"
-      ></angular-kythe-ui-file-tree>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <angular-kythe-ui-code-mirror [kytheTarget$]="kytheTarget$"></angular-kythe-ui-code-mirror>
-      <!-- Add Content Here -->
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+  >
+    <angular-kythe-ui-file-tree
+      *ngIf="(kytheTarget$ | async) as root"
+      [rootedAt]="root"
+    ></angular-kythe-ui-file-tree>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <angular-kythe-ui-code-mirror
+      [kytheTarget$]="kytheTarget$"
+    ></angular-kythe-ui-code-mirror>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

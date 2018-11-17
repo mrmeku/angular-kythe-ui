@@ -1,7 +1,21 @@
 <mat-toolbar color="primary" id="shell-toolbar">
-  <mat-toolbar-row fxFlex fxLayout="row" fxLayoutGap="64px" fxLayoutAlign="space-between center">
+  <mat-toolbar-row>
+    <button
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="toggleDrawer()"
+      *ngIf="(isHandset$ | async)"
+    >
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
     <span>Angular Kythe UI</span>
-    <mat-form-field class="search-bar-input" appearance="fill" fxFlex floatLabel="never">
+    <mat-form-field
+      class="search-bar-input"
+      appearance="fill"
+      fxFlex
+      floatLabel="never"
+    >
       <input matInput placeholder="Search for a file" />
     </mat-form-field>
   </mat-toolbar-row>
