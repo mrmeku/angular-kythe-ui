@@ -59,6 +59,7 @@ jobs:
               cd out
 
               echo "kythe.achew22.com" > CNAME
+              echo "angular-kythe-ui.achew22.com" >> CNAME
               cp index.html 404.html
 
               git add -A
