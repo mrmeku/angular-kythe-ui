@@ -6,6 +6,7 @@ import {
   MatButtonModule,
   MatIconModule,
   MatProgressSpinnerModule,
+  MatToolbarModule,
   MatTreeModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
@@ -15,6 +16,7 @@ import { FileTreeComponent } from './file-tree.component';
 @NgModule({
   declarations: [FileTreeComponent],
   imports: [
+    MatToolbarModule,
     FlexLayoutModule,
     RouterModule,
     MatProgressSpinnerModule,
