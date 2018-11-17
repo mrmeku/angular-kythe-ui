@@ -11,5 +11,6 @@ bazel run "@com_github_google_zoekt//cmd/zoekt-git-index" -- \
   -index "${INDEX_OUTPUT_DIR}" \
   "${INPUT_REPO}"
 
-bazel run "//zoekt/cmd" -- \
-  -index "${INDEX_OUTPUT_DIR}"
+ibazel run "//zoekt/cmd:cmd.binary" -- \
+  -index "${INDEX_OUTPUT_DIR}" \
+  "$@"
