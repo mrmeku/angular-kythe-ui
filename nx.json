@@ -28,6 +28,9 @@
     },
     "demo": {
       "tags": []
+    },
+    "source-viewer": {
+      "tags": []
     }
   }
 }

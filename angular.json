@@ -348,6 +348,34 @@
           }
         }
       }
+    },
+    "source-viewer": {
+      "root": "libs/source-viewer",
+      "sourceRoot": "libs/source-viewer/src",
+      "projectType": "library",
+      "prefix": "angular-kythe-ui",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/source-viewer/tsconfig.lib.json",
+              "libs/source-viewer/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/source-viewer/jest.config.js",
+            "tsConfig": "libs/source-viewer/tsconfig.spec.json",
+            "setupFile": "libs/source-viewer/src/test-setup.ts"
+          }
+        }
+      }
     }
   },
   "cli": {
