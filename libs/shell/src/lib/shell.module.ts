@@ -1,36 +1,40 @@
 import { NgModule } from '@angular/core';
-import { ShellComponent } from './shell.component';
-import {
-  MatSidenavModule,
-  MatToolbarModule,
-  MatListModule,
-  MatButtonModule,
-  MatIconModule
-} from '@angular/material';
-import { CommonModule } from '@angular/common';
-import { KytheModule } from '@angular-kythe-ui/kythe';
-import {
-  CodeMirrorModule,
-  codeMirrorRoutes
-} from '@angular-kythe-ui/code-mirror';
-import { FileTreeModule } from '@angular-kythe-ui/file-tree';
-import { RouterModule } from '@angular/router';
+import { RouterModule, UrlMatchResult, UrlSegment } from '@angular/router';
 
-const routes = RouterModule.forChild(codeMirrorRoutes);
+import { ShellComponent } from './shell.component';
+
+const SEARCH_PATH = 'search';
+
+export function sourceViewerRouteMatcher(
+  segments: UrlSegment[]
+): UrlMatchResult | null {
+  return !segments[0] || segments[0].path === SEARCH_PATH
+    ? null
+    : {
+        consumed: []
+      };
+}
 
 @NgModule({
   declarations: [ShellComponent],
   imports: [
-    routes,
-    FileTreeModule,
-    KytheModule,
-    CodeMirrorModule,
-    CommonModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatButtonModule
+    RouterModule.forChild([
+      {
+        path: SEARCH_PATH,
+        // loadChildren: './customers/customers.module#CustomersModule'
+        redirectTo: '',
+        pathMatch: 'full'
+      },
+      {
+        matcher: sourceViewerRouteMatcher,
+        loadChildren: '@angular-kythe-ui/source-viewer#SourceViewerModule'
+      },
+      {
+        path: '',
+        redirectTo: '',
+        pathMatch: 'full'
+      }
+    ])
   ],
   exports: [ShellComponent]
 })

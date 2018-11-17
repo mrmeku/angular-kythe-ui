@@ -5,10 +5,11 @@
     "types": []
   },
   "exclude": [
-    "src/test-setup.ts",
-    "**/*.spec.ts"
+    "../../**/test-setup.ts",
+    "../../**/*.spec.ts"
   ],
   "include": [
-    "**/*.ts"
+    "**/*.ts",
+    "../../libs/**/*.ts"
   ]
 }

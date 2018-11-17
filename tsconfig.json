@@ -27,6 +27,9 @@
       ],
       "@angular-kythe-ui/file-tree": [
         "libs/file-tree/src/index.ts"
+      ],
+      "@angular-kythe-ui/source-viewer": [
+        "libs/source-viewer/src/index.ts"
       ]
     }
   },
