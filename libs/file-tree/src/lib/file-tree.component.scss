@@ -1,0 +1,25 @@
+.file-link {
+  cursor: pointer;
+}
+
+:host {
+  position: relative;
+  height: calc(100% - 64px);
+  display: block;
+}
+
+.loading-container {
+  position: absolute;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.18);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  mat-progress-spinner {
+    z-index: 21;
+    position: relative;
+    top: -32px;
+  }
+}

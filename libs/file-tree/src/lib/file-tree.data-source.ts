@@ -26,12 +26,6 @@ export class FileTreeDataSource extends DataSource<DynamicFlatNode> {
   }
 
   connect(collectionViewer: CollectionViewer): Observable<DynamicFlatNode[]> {
-    this.kytheService.corpusRoots().subscribe(kytheTargets => {
-      this.data = kytheTargets.map(target =>
-        DynamicFlatNode.fromKytheTarget(target, 0)
-      );
-    });
-
     if (!this.treeControl.expansionModel.changed) {
       throw new Error('Tree control does not have change handler');
     }

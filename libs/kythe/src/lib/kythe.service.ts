@@ -16,7 +16,8 @@ const baseUrl =
   'https://cors-anywhere.herokuapp.com/xrefs-dot-kythe-repo.appspot.com';
 
 export interface DirResponse {
-  subdirectory: KytheUri[];
+  file?: KytheUri[];
+  subdirectory?: KytheUri[];
 }
 
 @Injectable({ providedIn: 'root' })
@@ -28,11 +29,13 @@ export class KytheService {
   }
 
   dir(dirRequest: DirRequest): Observable<KytheTarget[]> {
-    return this.http
-      .post<DirResponse>(baseUrl + '/dir', dirRequest)
-      .pipe(
-        map(response => response.subdirectory.map(uri => new KytheTarget(uri)))
-      );
+    return this.http.post<DirResponse>(baseUrl + '/dir', dirRequest).pipe(
+      map(response => {
+        return [...(response.subdirectory || []), ...(response.file || [])].map(
+          uri => new KytheTarget(uri)
+        );
+      })
+    );
   }
 
   getDecorations(getDecorationsRequest: GetDecorationsRequest) {

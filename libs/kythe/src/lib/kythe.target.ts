@@ -15,9 +15,13 @@ export class KytheTarget {
 
   private readonly url = new URL(this.kytheUri);
 
-  readonly corpus = this.url.pathname.slice(2);
   readonly path = this.url.searchParams.get('path') || '';
-  readonly depth = this.path.split('/').length;
+  readonly filePathParts = this.path.split('/');
+  readonly corpus = this.url.pathname.slice(2);
+  readonly depth = this.filePathParts.length;
+  readonly name = this.filePathParts[this.filePathParts.length - 1];
+
+  readonly isDirectory = this.name.indexOf('.') === -1;
 
   constructor(readonly kytheUri: KytheUri) {}
 
@@ -31,8 +35,6 @@ export class KytheTarget {
   }
 
   toString() {
-    return `kythe://${this.corpus}?path=${this.corpus}%2f${encodeURIComponent(
-      this.path
-    )}`;
+    return `kythe://${this.corpus}?path=${this.path}`;
   }
 }
