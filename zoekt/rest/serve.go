@@ -35,7 +35,20 @@ type httpError struct {
 
 func (e *httpError) Error() string { return fmt.Sprintf("%d: %s", e.status, e.msg) }
 
+func enableCORS(w http.ResponseWriter) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+}
+
 func Search(s zoekt.Searcher, w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+
+	if r.Method == "OPTIONS" {
+		enableCORS(w)
+		return
+	}
+
 	if err := serveSearchAPIErr(s, w, r); err != nil {
 		if e, ok := err.(*httpError); ok {
 			http.Error(w, e.msg, e.status)
