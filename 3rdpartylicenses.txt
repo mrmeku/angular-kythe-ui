@@ -341,8 +341,6 @@ MIT
 
 @angular/material/icon
 
-@angular/material/toolbar
-
 @angular/material/form-field
 
 @angular/flex-layout
@@ -577,6 +575,8 @@ THE SOFTWARE.
 
 @angular/forms
 MIT
+
+@angular/material/toolbar
 
 zone.js
 MIT
