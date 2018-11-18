@@ -9,7 +9,7 @@ jobs:
       - SOURCE_BRANCH: master
       - TARGET_BRANCH: gh-pages
     docker:
-      - image: circleci/node:8.12.0-stretch-browsers
+      - image: circleci/node:11.1.0-stretch-browsers
     steps:
       - checkout
       - restore_cache:
@@ -58,7 +58,6 @@ jobs:
               mkdir -p out/.circleci && cp -a .circleci/. out/.circleci/.
               cd out
 
-              echo "kythe.achew22.com" > CNAME
               echo "angular-kythe-ui.achew22.com" >> CNAME
               cp index.html 404.html
 
