@@ -1,5 +1,5 @@
 <div>
-  <mat-card *ngFor="let file of (searchResult$ | async).Files; trackBy: trackBy">
+  <mat-card *ngFor="let file of (searchResults | async).Files; trackBy: trackBy">
     <div>Repo: {{ file.Repo }}</div>
     <div>Branches: {{ file.Branches }}</div>
     <div>FileName: <a [routerLink]="'/' + file.Repo + '/' + file.FileName">{{ file.FileName }}</a></div>

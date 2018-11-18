@@ -4,6 +4,7 @@ import {
   Component,
   ViewEncapsulation
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
@@ -15,6 +16,8 @@ import { map, shareReplay } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 export class ShellComponent {
+  private readonly query: string;
+
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe([Breakpoints.Handset, Breakpoints.Small])
     .pipe(
@@ -22,9 +25,16 @@ export class ShellComponent {
       shareReplay()
     );
 
-  constructor(private readonly breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private readonly breakpointObserver: BreakpointObserver,
+    private readonly router: Router
+  ) {}
 
   toggleDrawer() {
     throw new Error('Implement me!');
+  }
+
+  onSubmit() {
+    this.router.navigate(['/search'], { queryParams: { query: this.query } });
   }
 }

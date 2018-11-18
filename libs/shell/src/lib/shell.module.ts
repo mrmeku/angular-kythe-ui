@@ -4,6 +4,7 @@ import { KytheModule } from '@angular-kythe-ui/kythe';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatIconModule,
@@ -46,7 +47,8 @@ export function sourceViewerRouteMatcher(
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule
   ],
   exports: [ShellComponent]
 })
