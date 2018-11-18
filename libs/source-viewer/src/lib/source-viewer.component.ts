@@ -4,15 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { merge, Observable, Subject } from 'rxjs';
-import {
-  distinctUntilChanged,
-  filter,
-  first,
-  map,
-  shareReplay,
-  startWith,
-  tap
-} from 'rxjs/operators';
+import { distinctUntilChanged, filter, first, map, shareReplay, startWith, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'angular-kythe-ui-source-viewer',
@@ -52,7 +44,7 @@ export class SourceViewerComponent {
       const parts = path.split('/');
       return KytheTarget.fromCorpusAndPath({
         corpus: parts[0],
-        path: parts.slice(1).join('/')
+        path
       });
     })
   );

@@ -1,10 +1,11 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-  <mat-tree-node class="file-link" [routerLink]="['/' + node.kytheTarget.corpus + '/' + node.kytheTarget.path]" *matTreeNodeDef="let node" matTreeNodePadding>
+  <mat-tree-node [matTreeNodePaddingIndent]="24" class="file-link" [routerLink]="['/' + node.kytheTarget.path]" *matTreeNodeDef="let node" matTreeNodePadding>
     <button mat-icon-button disabled>
         <mat-icon class="mat-icon-rtl-mirror">insert_drive_file </mat-icon>
-    </button> {{ node.name }}
+    </button>
+    <span class="node-name">{{ node.name }}</span>
   </mat-tree-node>
-  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+  <mat-tree-node [matTreeNodePaddingIndent]="24" *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
     <button
       mat-icon-button
       [attr.aria-label]="'toggle ' + node.filename"
@@ -14,7 +15,7 @@
         {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
       </mat-icon>
     </button>
-    {{ node.name }}
+    <span class="node-name">{{ node.name }}</span>
   </mat-tree-node>
 </mat-tree>
 

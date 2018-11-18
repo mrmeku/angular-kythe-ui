@@ -1,24 +1,35 @@
-.file-link {
-  cursor: pointer;
-}
+angular-kythe-ui-file-tree {
+  position: relative !important;
+  height: 100% !important;
+  display: block !important;
 
-:host {
-  position: relative;
-  height: 100%;
-  display: block;
-}
+  .mat-tree-node {
+    overflow: unset;
+    min-height: 0;
+    overflow: unset;
+    padding-right: 12px;
+  }
 
-.loading-container {
-  position: absolute;
-  z-index: 20;
-  background: rgba(0, 0, 0, 0.18);
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  .node-name {
+    padding-right: 12px;
+  }
 
-  mat-progress-spinner {
-    z-index: 21;
-    position: relative;
+  .file-link {
+    cursor: pointer;
+  }
+
+  .loading-container {
+    position: absolute;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.18);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    mat-progress-spinner {
+      z-index: 21;
+      position: relative;
+    }
   }
 }
