@@ -51,9 +51,9 @@ jobs:
               cd ..
 
               yarn install
-              yarn build-demo
+              yarn build:docs
 
-              cp -a dist/apps/demo/. out/.
+              cp -a dist/apps/kythe-ui/. out/.
 
               mkdir -p out/.circleci && cp -a .circleci/. out/.circleci/.
               cd out
