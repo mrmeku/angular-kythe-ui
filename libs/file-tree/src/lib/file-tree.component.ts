@@ -12,7 +12,8 @@ import {
   Input,
   OnChanges,
   OnInit,
-  SimpleChanges
+  SimpleChanges,
+  ViewEncapsulation
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -27,6 +28,7 @@ import { FileTreeDataSource } from './file-tree.data-source';
       transition(`* <=> *`, animate(`300ms ease-in-out`))
     ])
   ],
+  encapsulation: ViewEncapsulation.None,
   selector: 'angular-kythe-ui-file-tree',
   templateUrl: 'file-tree.component.html',
   styleUrls: ['file-tree.component.scss']
