@@ -1,5 +1,14 @@
-<mat-toolbar class="title-bar">
-  <span class="title">{{ filePath$ | async }}</span>
+<mat-toolbar class="breadcrumbs-bar">
+
+    <div class="parts-container">
+      <ng-container *ngFor="let filePathPart of filePathParts$ | async; let last = last; trackBy: trackBy">
+        <span class="file-path-part" [class.linked]="!last" [routerLink]="filePathPart.url"
+        (click)="setRootTarget(filePathPart.url)">{{ filePathPart.part }}</span>
+        <span *ngIf="!last">/</span>
+      </ng-container>
+    </div>
+    <div fxFlex></div>
+
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
@@ -10,7 +19,7 @@
     [opened]="!(isHandset$ | async)"
   >
     <angular-kythe-ui-file-tree
-      *ngIf="(kytheTarget$ | async) as root"
+      *ngIf="(fileTreeRoot$ | async) as root"
       [rootedAt]="root"
     ></angular-kythe-ui-file-tree>
   </mat-sidenav>

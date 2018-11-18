@@ -15,6 +15,7 @@
       appearance="fill"
       fxFlex
       floatLabel="never"
+      *ngIf="(isHandset$ | async) === false"
     >
       <input matInput placeholder="Search for a file" />
     </mat-form-field>
