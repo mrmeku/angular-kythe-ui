@@ -15,7 +15,7 @@ export class ZoektComponent implements AfterViewInit {
   ) {}
 
   readonly searchResult$ = this.zoektService.search({
-    query: 'ExtractToFile',
+    query: 'AbstractCompilationAnalyzer',
     restrict: [{ repo: 'kythe', branches: ['master'] }]
   });
 

@@ -49,10 +49,10 @@ export class SourceViewerComponent {
 
   readonly kytheTarget$ = this.filePath$.pipe(
     map(path => {
-      const [corpus] = path.split('/');
+      const parts = path.split('/');
       return KytheTarget.fromCorpusAndPath({
-        corpus,
-        path
+        corpus: parts[0],
+        path: parts.slice(1).join('/')
       });
     })
   );
