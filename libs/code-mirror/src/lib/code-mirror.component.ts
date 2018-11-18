@@ -121,6 +121,7 @@ export class CodeMirrorComponent implements AfterViewInit, OnDestroy {
           }
           decorate(editor, kytheDecoration);
           this.nativeElement.prepend(this.codeMirrorContainer);
+          editor.scrollTo(0, 0);
           editor.refresh();
 
           const line$ = this.activeRoute.queryParamMap.pipe(
