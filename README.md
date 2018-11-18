@@ -19,11 +19,11 @@ yarn affected:tests --all
 
 
 ## Deployment
-Every merge to master is automatically deployed to http://kythe.achew22.com/
+Every merge to master is automatically deployed to http://http://angular-kythe-ui.achew22.com/
 
 ## Contributing
 
-Just do it my peeps.
+Just do it my peeps
 
 ## Authors
 
@@ -32,4 +32,4 @@ Just do it my peeps.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.MD) file for details
