@@ -36,7 +36,7 @@ export function sourceViewerRouteMatcher(
         matcher: sourceViewerRouteMatcher,
         loadChildren: '@angular-kythe-ui/source-viewer#SourceViewerModule'
       },
-      { path: '', redirectTo: '', pathMatch: 'full' }
+      { path: '', redirectTo: SEARCH_PATH, pathMatch: 'full' }
     ]),
     FileTreeModule,
     KytheModule,

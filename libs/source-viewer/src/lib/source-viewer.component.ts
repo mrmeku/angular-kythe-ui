@@ -4,7 +4,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, map, shareReplay, startWith, tap } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  shareReplay,
+  startWith,
+  tap
+} from 'rxjs/operators';
 
 @Component({
   selector: 'angular-kythe-ui-source-viewer',
@@ -35,6 +42,7 @@ export class SourceViewerComponent {
       return u.pathname.substr(2);
     }),
     filter(p => Boolean(p)),
+    distinctUntilChanged(),
     tap(u => this.titleService.setTitle(`Angular Kythe UI - ${u}`)),
     shareReplay()
   );
