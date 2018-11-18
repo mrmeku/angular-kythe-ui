@@ -10,22 +10,34 @@
   background: inherit;
 }
 
-.mat-toolbar {
+.breadcrumbs-bar {
   top: 0;
   z-index: 11;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  padding-left: 24px;
+  padding-right: 24px;
 
-  button {
-    margin-right: 8px;
-    margin-left: -4px;
-  }
-
-  .title {
+  .parts-container {
     overflow: hidden;
+    max-width: 100%;
     white-space: nowrap;
     text-overflow: ellipsis;
+    direction: rtl;
+    text-align: left;
+  }
+
+  .file-path-part {
+    min-width: max-content;
+
+    $linked-background: #173f50;
+    &.linked {
+      cursor: pointer;
+      transition: background 0.1s ease-in-out;
+      background: rgba($linked-background, 0);
+
+      &:hover {
+        background: rgba($linked-background, 1);
+      }
+    }
   }
 }
 

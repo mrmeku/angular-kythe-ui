@@ -3,6 +3,7 @@ import { FileTreeModule } from '@angular-kythe-ui/file-tree';
 import { KytheModule } from '@angular-kythe-ui/kythe';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {
   MatButtonModule,
   MatIconModule,
@@ -51,6 +52,7 @@ export const routes: Route[] = [
     KytheModule,
     CodeMirrorModule,
     CommonModule,
+    FlexLayoutModule,
     MatIconModule,
     MatSidenavModule,
     MatToolbarModule,

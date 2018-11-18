@@ -7,7 +7,13 @@ import {
   trigger
 } from '@angular/animations';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { DynamicFlatNode } from './dynamic-flat-node';
@@ -25,7 +31,7 @@ import { FileTreeDataSource } from './file-tree.data-source';
   templateUrl: 'file-tree.component.html',
   styleUrls: ['file-tree.component.scss']
 })
-export class FileTreeComponent implements OnInit {
+export class FileTreeComponent implements OnInit, OnChanges {
   dataSource: FileTreeDataSource;
 
   @Input() rootedAt: KytheTarget;
@@ -47,30 +53,28 @@ export class FileTreeComponent implements OnInit {
 
   constructor(private readonly kytheService: KytheService) {}
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.rootedAt && this.rootedAt) {
+      this.loading.next(true);
+      this.kytheService
+        .dir({
+          corpus: this.rootedAt.corpus,
+          path: this.rootedAt.path,
+          root: null
+        })
+        .subscribe(kytheTargets => {
+          this.loading.next(false);
+          this.dataSource.data = kytheTargets.map(target =>
+            DynamicFlatNode.fromKytheTarget(target, target.filePathParts.length)
+          );
+        });
+    }
+  }
+
   ngOnInit() {
     this.dataSource = new FileTreeDataSource(
       this.treeControl,
       this.kytheService
     );
-
-    const path = this.rootedAt.isDirectory
-      ? this.rootedAt.path
-      : this.rootedAt.filePathParts
-          .slice(0, this.rootedAt.filePathParts.length - 1)
-          .join('/');
-
-    this.loading.next(true);
-    this.kytheService
-      .dir({
-        corpus: this.rootedAt.corpus,
-        path,
-        root: null
-      })
-      .subscribe(kytheTargets => {
-        this.loading.next(false);
-        this.dataSource.data = kytheTargets.map(target =>
-          DynamicFlatNode.fromKytheTarget(target, target.filePathParts.length)
-        );
-      });
   }
 }
