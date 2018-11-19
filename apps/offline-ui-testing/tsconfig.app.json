@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc/apps/offline-ui-testing",
+    "types": []
+  },
+  "exclude": [
+    "../../**/test-setup.ts",
+    "../../**/*.spec.ts"
+  ],
+  "include": [
+    "**/*.ts",
+    "../../libs/**/*.ts"
+  ]
+}

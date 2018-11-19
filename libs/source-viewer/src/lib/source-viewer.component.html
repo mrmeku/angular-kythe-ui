@@ -1,14 +1,31 @@
 <mat-toolbar class="breadcrumbs-bar">
-
-    <div class="parts-container">
-      <ng-container *ngFor="let filePathPart of filePathParts$ | async; let last = last; trackBy: trackBy">
-        <span class="file-path-part" [class.linked]="!last" [routerLink]="filePathPart.url"
-        (click)="setRootTarget(filePathPart.url)">{{ filePathPart.part }}</span>
-        <span *ngIf="!last">/</span>
-      </ng-container>
-    </div>
-    <div fxFlex></div>
-
+  <div class="parts-container">
+    <ng-container
+      *ngFor="
+        let filePathPart of (filePathParts$ | async);
+        let last = last;
+        trackBy: trackBy
+      "
+    >
+      <span
+        class="file-path-part"
+        [class.linked]="!last"
+        [routerLink]="filePathPart.url"
+        (click)="setRootTarget(filePathPart.url)"
+        >{{ filePathPart.part }}</span
+      >
+      <span>/</span>
+    </ng-container>
+  </div>
+  <div fxFlex></div>
+  <button
+    mat-button
+    (click)="setRootTarget('/' + target.path)"
+    *ngIf="(kytheTarget$ | async) as target"
+    [disabled]="target.path === (fileTreeRoot$ | async)?.path"
+  >
+    Set Root Here
+  </button>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav
@@ -18,6 +35,16 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)"
   >
+    <button
+      class="up-a-directory-button"
+      (click)="setRootAsParent(root)"
+      mat-button
+      [disabled]="!root.filePathParts[root.filePathParts.length - 1]"
+      *ngIf="(fileTreeRoot$ | async) as root"
+    >
+      <!-- <mat-icon>arrow_up</mat-icon> -->
+      {{ root.filePathParts[root.filePathParts.length - 2] || '/' }}
+    </button>
     <angular-kythe-ui-file-tree
       *ngIf="(fileTreeRoot$ | async) as root"
       [rootedAt]="root"

@@ -78,11 +78,11 @@ export class FileTreeDataSource extends DataSource<DynamicFlatNode> {
         });
     } else {
       let count = 0;
-      for (
-        let i = index + 1;
-        i < this.data.length && this.data[i].level > node.level;
-        i++, count++
-      ) {}
+      let currentNode = this.data[index + 1];
+      while (currentNode && currentNode.level > node.level) {
+        count++;
+        currentNode = this.data[index + 1 + count];
+      }
 
       if (count) {
         this.data = this.data.filter(
@@ -93,15 +93,13 @@ export class FileTreeDataSource extends DataSource<DynamicFlatNode> {
   }
 
   private getChildren(node: DynamicFlatNode): Observable<DynamicFlatNode[]> {
-    return this.kytheService
-      .dir({
-        corpus: node.kytheTarget.corpus,
-        path: node.kytheTarget.path,
-        root: null
-      })
-      .pipe(
-        first(),
-        map(kytheTargets => kytheTargets.map(DynamicFlatNode.fromKytheTarget))
-      );
+    return this.kytheService.dir(node.kytheTarget).pipe(
+      first(),
+      map(kytheTargets =>
+        kytheTargets.map(target =>
+          DynamicFlatNode.fromKytheTarget(target, node.level + 1)
+        )
+      )
+    );
   }
 }

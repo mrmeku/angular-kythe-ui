@@ -24,14 +24,12 @@ export function decorate(
     ) {
       // TODO: Figure out what circumstances don't have column offsets and
       // handle them better than this.
-      console.log(reference.target_ticket);
       // These things we don't do either!
       return;
     }
     if (reference.span.start.line_number !== reference.span.end.line_number) {
       // TODO: Figure out what circumstances hilighting spans multiple lines and
       // handle them better than ignoring.
-      console.log(reference.target_ticket);
       // We don't do multi line hilighting;
       return;
     }

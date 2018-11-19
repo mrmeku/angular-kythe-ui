@@ -36,7 +36,7 @@ export class KytheTarget {
 
   static fromUrl(url: string) {
     url = url.slice(1);
-    const [corpus] = url.split('/');
+    const [corpus, ...pathParts] = url.split('/');
     return KytheTarget.fromCorpusAndPath({ corpus, path: url });
   }
 

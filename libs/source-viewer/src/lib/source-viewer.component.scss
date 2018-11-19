@@ -10,6 +10,14 @@
   background: inherit;
 }
 
+.up-a-directory-button {
+  width: 100%;
+
+  mat-icon {
+    color: white;
+  }
+}
+
 .breadcrumbs-bar {
   top: 0;
   z-index: 11;
