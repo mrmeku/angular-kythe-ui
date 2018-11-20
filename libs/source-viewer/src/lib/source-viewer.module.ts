@@ -21,20 +21,14 @@ import {
 import { SourceViewerComponent } from './source-viewer.component';
 
 export function matcher(segments: UrlSegment[]): UrlMatchResult {
-  if (segments.length <= 1) {
+  if (segments.length < 1) {
     return null;
   }
   return {
     consumed: segments,
     posParams: {
       corpus: new UrlSegment(segments[0].toString(), {}),
-      path: new UrlSegment(
-        segments
-          .slice(1)
-          .map(s => s.toString())
-          .join('/'),
-        {}
-      )
+      path: new UrlSegment(segments.map(s => s.toString()).join('/'), {})
     }
   };
 }
@@ -48,16 +42,16 @@ export const routes: Route[] = [
 
 @NgModule({
   imports: [
-    FileTreeModule,
-    KytheModule,
     CodeMirrorModule,
     CommonModule,
+    FileTreeModule,
     FlexLayoutModule,
+    KytheModule,
+    MatButtonModule,
     MatIconModule,
+    MatListModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule,
-    MatButtonModule,
     RouterModule.forChild(routes)
   ],
   declarations: [SourceViewerComponent]

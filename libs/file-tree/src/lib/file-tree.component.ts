@@ -57,26 +57,29 @@ export class FileTreeComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.rootedAt && this.rootedAt) {
-      this.loading.next(true);
-      this.kytheService
-        .dir({
+      if (!this.rootedAt.isDirectory) {
+        this.rootedAt = KytheTarget.fromCorpusAndPath({
           corpus: this.rootedAt.corpus,
-          path: this.rootedAt.path,
-          root: null
-        })
-        .subscribe(kytheTargets => {
-          this.loading.next(false);
-          this.dataSource.data = kytheTargets.map(target =>
-            DynamicFlatNode.fromKytheTarget(target, target.filePathParts.length)
-          );
+          path: this.rootedAt.path.slice(0, this.rootedAt.path.lastIndexOf('/'))
         });
+      }
+
+      this.loading.next(true);
+      this.kytheService.dir(this.rootedAt).subscribe(kytheTargets => {
+        this.loading.next(false);
+
+        if (!this.dataSource) {
+          this.dataSource = new FileTreeDataSource(
+            this.treeControl,
+            this.kytheService
+          );
+        }
+        this.dataSource.data = kytheTargets.map(target =>
+          DynamicFlatNode.fromKytheTarget(target, 0)
+        );
+      });
     }
   }
 
-  ngOnInit() {
-    this.dataSource = new FileTreeDataSource(
-      this.treeControl,
-      this.kytheService
-    );
-  }
+  ngOnInit() {}
 }

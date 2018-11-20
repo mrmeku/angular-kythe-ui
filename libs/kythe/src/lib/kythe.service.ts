@@ -28,7 +28,12 @@ export class KytheService {
       .pipe(map(response => response.corpus.map(KytheTarget.fromCorpusRoot)));
   }
 
-  dir(dirRequest: DirRequest): Observable<KytheTarget[]> {
+  dir(target: KytheTarget): Observable<KytheTarget[]> {
+    const dirRequest: DirRequest = {
+      corpus: target.corpus,
+      root: null,
+      path: target.path
+    };
     return this.http.post<DirResponse>(baseUrl + '/dir', dirRequest).pipe(
       map(response => {
         return [...(response.subdirectory || []), ...(response.file || [])].map(

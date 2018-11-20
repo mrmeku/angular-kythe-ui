@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatIconModule,
+  MatIconRegistry,
   MatInputModule,
   MatToolbarModule
 } from '@angular/material';
@@ -52,4 +53,8 @@ export function sourceViewerRouteMatcher(
   ],
   exports: [ShellComponent]
 })
-export class ShellModule {}
+export class ShellModule {
+  constructor(matIconRegistry: MatIconRegistry) {
+    matIconRegistry.setDefaultFontSetClass('material-icons-extended');
+  }
+}

@@ -291,6 +291,112 @@
           }
         }
       }
+    },
+    "offline-ui-testing": {
+      "root": "apps/offline-ui-testing/",
+      "sourceRoot": "apps/offline-ui-testing/src",
+      "projectType": "application",
+      "prefix": "angular-kythe-ui",
+      "schematics": {
+        "@schematics/angular:component": {
+          "inlineTemplate": true,
+          "inlineStyle": true,
+          "styleext": "scss",
+          "spec": false
+        },
+        "@schematics/angular:class": {
+          "spec": false
+        },
+        "@schematics/angular:directive": {
+          "spec": false
+        },
+        "@schematics/angular:guard": {
+          "spec": false
+        },
+        "@schematics/angular:module": {
+          "spec": false
+        },
+        "@schematics/angular:pipe": {
+          "spec": false
+        },
+        "@schematics/angular:service": {
+          "spec": false
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/offline-ui-testing",
+            "index": "apps/offline-ui-testing/src/index.html",
+            "main": "apps/offline-ui-testing/src/main.ts",
+            "polyfills": "apps/offline-ui-testing/src/polyfills.ts",
+            "tsConfig": "apps/offline-ui-testing/tsconfig.app.json",
+            "assets": [
+              "apps/offline-ui-testing/src/favicon.ico",
+              "apps/offline-ui-testing/src/assets"
+            ],
+            "styles": [
+              "apps/offline-ui-testing/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/offline-ui-testing/src/environments/environment.ts",
+                  "with": "apps/offline-ui-testing/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "offline-ui-testing:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "offline-ui-testing:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "offline-ui-testing:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/offline-ui-testing/tsconfig.app.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
