@@ -45,7 +45,7 @@ go_repository(
     name = "in_gopkg_src_d_go_git_v4",
     importpath = "gopkg.in/src-d/go-git.v4",
     remote = "https://github.com/src-d/go-git",
-    tag = "v4.7.1",
+    tag = "v4.8.0",
     vcs = "git",
 )
 
