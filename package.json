@@ -54,8 +54,8 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "0.10.6",
     "@angular/cli": "7.0.6",
-    "@angular/compiler-cli": "7.0.4",
-    "@angular/language-service": "7.0.4",
+    "@angular/compiler-cli": "7.1.0",
+    "@angular/language-service": "7.1.0",
     "@nrwl/builders": "7.0.2",
     "@nrwl/schematics": "7.0.2",
     "@types/chai": "4.1.7",
