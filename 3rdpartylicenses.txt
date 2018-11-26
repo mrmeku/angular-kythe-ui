@@ -603,8 +603,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-@angular/material/card
-
 @angular/material/tree
 
 codemirror
@@ -635,3 +633,5 @@ THE SOFTWARE.
 @angular/material/progress-spinner
 
 @angular/material/sidenav
+
+@angular/material/card
