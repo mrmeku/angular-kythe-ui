@@ -137,7 +137,7 @@ go_repository(
 
 go_repository(
     name = "org_golang_x_net",
-    commit = "351d144fa1fc0bd934e2408202be0c29f25e35a0",
+    commit = "610586996380ceef02dd726cc09df7e00a3f8e56",
     importpath = "golang.org/x/net",
 )
 
