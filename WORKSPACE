@@ -149,6 +149,6 @@ go_repository(
 
 go_repository(
     name = "org_golang_x_sys",
-    commit = "b00e65af1da0681cde6c8227839a0ca53bbf16bb",
+    commit = "8ff4e546d48be377a38a3ab13ef2dd4dd8dce06a",
     importpath = "golang.org/x/sys",
 )
