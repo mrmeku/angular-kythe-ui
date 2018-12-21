@@ -5,5 +5,5 @@ require (
 	github.com/google/zoekt v0.0.0-20181210185712-6051a18956be
 	golang.org/x/net v0.0.0-20181220204955-927f97764cc3
 	golang.org/x/sync v0.0.0-20181108010431-42b317875d0f // indirect
-	golang.org/x/sys v0.0.0-20181221072140-8ff4e546d48b // indirect
+	golang.org/x/sys v0.0.0-20181221145928-b4a75ba826a6 // indirect
 )
