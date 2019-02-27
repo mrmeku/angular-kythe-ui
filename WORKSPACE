@@ -131,7 +131,7 @@ go_repository(
 
 go_repository(
     name = "com_github_google_zoekt",
-    commit = "6051a18956be6b45330228ca891f0b28b75619da",
+    commit = "0be87929233283903f4de88986f05f8970acc6e7",
     importpath = "github.com/google/zoekt",
 )
 
