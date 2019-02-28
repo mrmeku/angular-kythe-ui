@@ -344,10 +344,10 @@
   resolved "https://registry.yarnpkg.com/@types/codemirror/-/codemirror-0.0.69.tgz#a40ead562be9173dc18c0816c7f54c1fc272f937"
   integrity sha512-NtAjeJ5vqEry4w/UtKrpbPf/yViBCGB0MYTKk8/GKEEBEc8p592dg28UzDBFtUpw1+F002crt15w5hZo0zHgFw==
 
-"@types/expect@1.20.3":
-  version "1.20.3"
-  resolved "https://registry.yarnpkg.com/@types/expect/-/expect-1.20.3.tgz#a99d059ace4bd051332faf03f5b4b4266149a501"
-  integrity sha512-g0+CQosizg1hjNn06fKB2tEvS5kExrvVOkIfsGuIRfsQ/A9u/Xjp/6/czJVyLuCYdkmMbplDUXvQW+YjBQK7dA==
+"@types/expect@1.20.4":
+  version "1.20.4"
+  resolved "https://registry.yarnpkg.com/@types/expect/-/expect-1.20.4.tgz#8288e51737bf7e3ab5d7c77bfa695883745264e5"
+  integrity sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==
 
 "@types/jest@23.3.9", "@types/jest@^23.3.1":
   version "23.3.9"
