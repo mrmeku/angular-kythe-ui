@@ -112,9 +112,8 @@ go_repository(
 go_repository(
     name = "com_github_mitchellh_go_homedir",
     importpath = "github.com/mitchellh/go-homedir",
-    tag = "v1.0.0",
+    tag = "v1.1.0",
 )
-
 go_repository(
     name = "com_github_pelletier_go_buffruneio",
     importpath = "github.com/pelletier/go-buffruneio",
