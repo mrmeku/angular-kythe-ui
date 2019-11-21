@@ -70,7 +70,7 @@ go_repository(
 go_repository(
     name = "in_gopkg_src_d_go_billy_v4",
     importpath = "gopkg.in/src-d/go-billy.v4",
-    tag = "v4.3.0",
+    tag = "v4.3.2",
 )
 
 go_repository(
