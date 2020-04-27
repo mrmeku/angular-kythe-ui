@@ -9,7 +9,7 @@ jobs:
       - SOURCE_BRANCH: master
       - TARGET_BRANCH: gh-pages
     docker:
-      - image: circleci/node:8.14.1-stretch
+      - image: circleci/node:8.17.0-stretch
     steps:
       - checkout
       - restore_cache:
