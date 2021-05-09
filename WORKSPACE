@@ -118,7 +118,7 @@ go_repository(
 go_repository(
     name = "com_github_pelletier_go_buffruneio",
     importpath = "github.com/pelletier/go-buffruneio",
-    tag = "v0.2.0",
+    tag = "v0.3.0",
 )
 
 # End of manually added deps
