@@ -126,7 +126,7 @@ go_repository(
 go_repository(
     name = "com_github_fsnotify_fsnotify",
     importpath = "github.com/fsnotify/fsnotify",
-    tag = "v1.4.7",
+    tag = "v1.6.0",
 )
 
 go_repository(
