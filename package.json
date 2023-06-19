@@ -49,13 +49,13 @@
     "codemirror": "^5.41.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.11.0",
     "@angular/cli": "7.1.0",
-    "@angular/compiler-cli": "7.1.0",
-    "@angular/language-service": "7.1.0",
+    "@angular/compiler-cli": "7.2.16",
+    "@angular/language-service": "7.2.16",
     "@nrwl/builders": "7.0.2",
     "@nrwl/schematics": "7.0.2",
     "@types/chai": "4.1.7",
