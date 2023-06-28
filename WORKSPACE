@@ -106,7 +106,7 @@ go_repository(
 go_repository(
     name = "com_github_xanzy_ssh_agent",
     importpath = "github.com/xanzy/ssh-agent",
-    tag = "v0.2.0",
+    tag = "v0.3.3",
 )
 
 go_repository(
